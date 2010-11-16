@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <head>
+          <style>
+
+        .infopanel  { border:2px solid #{richSkin.panelBorderColor}; }
+        .row1       {   height:60px; }
+        .row1 .col  { padding:10px; }
+        .row2       {   height:2px; }
+        .row3       {   height:20px; }
+        .row3 .col  {text-align:left; }
+        .col        { }
+    </style>
+    </head>
+    <body>
+        
+        <ui:composition template="./template.xhtml">
+         
+
+            <ui:define name="content">
+               
+<rich:togglePanel  switchType="client"
+     stateOrder="closed,tip1, tip2,tip3">
+
+     <f:facet name="closed">
+            <rich:toggleControl id="pic" style="border-width:0" value="clique" >
+               
+            </rich:toggleControl>
+     </f:facet>
+
+    <f:facet name="tip1">
+        aaaaaaaaaaaaaaaaaaaaa
+    </f:facet>
+
+     <f:facet name="tip2">
+        bbbbbbbbbbbbbbbbbbbbbb
+     </f:facet>
+
+     <f:facet name="tip3">
+        ccccccccccccccccccccccc
+     </f:facet>
+
+     </rich:togglePanel>
+
+            </ui:define>
+
+        </ui:composition>
+        
+    </body>
+</html>

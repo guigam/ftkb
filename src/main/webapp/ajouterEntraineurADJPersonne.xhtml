@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:f="http://java.sun.com/jsf/core">
+    
+    <body>
+        
+        <ui:composition template="./template.xhtml">
+            
+            
+
+            <ui:define name="content">
+             <h:form>
+                  <rich:panel>
+
+                      <h:panelGrid columns="2">
+                             <h:outputText value="Ajouter un entraineur-adjoint" styleClass="title1"/>
+                             <h:panelGrid>
+                                     <rich:message for="lic" styleClass="globalMessages" >
+                                                <h:graphicImage url="img/error.png"/>
+                                     </rich:message>
+                                     <rich:message for="date" styleClass="globalMessages" />
+                                     <rich:message for="dns" styleClass="globalMessages" />
+                                     <rich:message for="nomPrenom" styleClass="globalMessages" />
+                                     <rich:message for="cin" styleClass="globalMessages" />
+                                     <rich:message for="nationalite" styleClass="globalMessages" />
+                             </h:panelGrid>
+                      </h:panelGrid>
+                      <rich:separator width="100%" height="7px"/>
+                      <rich:spacer height="10px"/>
+
+                     <center> <rich:panel style="width: 50%">
+                      <h:panelGrid  columns="2"  cellspacing="7">
+        
+                              
+                                      <h:outputText value="Date Debut"/>
+                                      <rich:calendar value="#{gestEntrainAdj.lentraineurAdj.dateDeb}" id="date" required="true" requiredMessage="Date  #{msgValidator.msgObligatoire}"/>
+                                      <h:outputText value="Numero Licence"/>
+                                      <h:inputText value="#{gestEntrainAdj.lentraineurAdj.licence}" required="true" id="lic" requiredMessage="Licence  #{msgValidator.msgObligatoire}"/>
+                                      <h:outputText value="Grade"/>
+                                      <rich:comboBox value="#{gestEntrainAdj.lentraineurAdj.grade}">
+                                          <f:selectItem itemValue="Noir"/>
+                                          <f:selectItem itemValue="Marron"/>
+                                          <f:selectItem itemValue="Blanc"/>
+                                          <f:selectItem itemValue="Rouge"/>
+                                      </rich:comboBox>
+                                      <h:outputLabel value="Adresse:" for="adresse" />
+                                      <h:inputText id="adresse" value="#{gestEntrainAdj.laPersonnes.adresse}" title="Adresse" required="true" requiredMessage="Adresse  #{msgValidator.msgObligatoire}"/>
+                                      <h:outputLabel value="Dns:" for="dns" />
+                                      <h:inputText id="dns" value="#{gestEntrainAdj.laPersonnes.dns}" title="Dns" required="true" requiredMessage="Date de Naissance  #{msgValidator.msgObligatoire}">
+                                          <f:convertDateTime pattern="MM/dd/yyyy" />
+                                      </h:inputText>
+                                      <h:outputLabel value="Email:" for="Email" />
+                                      <h:inputText id="email" value="#{gestEntrainAdj.laPersonnes.email}" title="Email" />
+                                      <h:outputLabel value="NomPrenom:" for="nomPrenom" />
+                                      <h:inputText id="nomPrenom" value="#{gestEntrainAdj.laPersonnes.nomPrenom}" title="NomPrenom" required="true" requiredMessage="Nom et Prenom  #{msgValidator.msgObligatoire}"/>
+                                      <h:outputLabel value="Phone:" for="Telephone" />
+                                      <h:inputText id="phone" value="#{gestEntrainAdj.laPersonnes.phone}" title="Phone" />
+                                      <h:outputLabel value="Cin:" for="cin" />
+                                      <h:inputText id="cin" value="#{gestEntrainAdj.laPersonnes.cin}" title="Cin" required="true" requiredMessage="Le numerod de la CIN  #{msgValidator.msgObligatoire}"/>
+                                      <h:outputLabel value="Nationalite:" for="nationalite" />
+                                      <h:inputText id="nationalite" value="#{gestEntrainAdj.laPersonnes.nationalite}" title="Nationalite" label="TUNISIENNE" required="true" requiredMessage="Nationalité  #{msgValidator.msgObligatoire}"/>
+                                      <h:commandButton value="Valider" action="#{gestEntrainAdj.saveEntraineurADJEtPersonne}"/>
+
+
+                                
+                          </h:panelGrid>
+                        </rich:panel></center>
+         </rich:panel>
+       </h:form>
+   </ui:define>
+
+        </ui:composition>
+        
+    </body>
+</html>

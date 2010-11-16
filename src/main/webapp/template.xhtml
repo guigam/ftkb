@@ -1,0 +1,250 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:f="http://java.sun.com/jsf/core">
+    
+    <head>
+               
+ <style>
+    .pic {
+        margin-bottom: -4px;
+        margin-right: 2px;
+    }
+    .search .rich-menu-item-hover{
+        background-color: transparent;
+        border-color: transparent;
+    }
+                .top {
+
+                    vertical-align:top;
+
+                }
+                .top1 {
+                    width:40%;
+                    vertical-align:top;
+                    
+                }
+                .top2 {
+                    width:60%;
+                    vertical-align:top;
+                }
+                .top3 {
+                    width:10%;
+                    vertical-align:top;
+
+                }
+                .top4 {
+                    width:90%;
+                    vertical-align:top;
+                }
+                .title1{
+                    font-size:16pt;
+                    font-weight:bold
+                }
+                .title2{
+                    font-size:9pt;
+                    font-weight:bold;
+                }
+                .title3 {
+                    font-size:17pt;
+                    font-weight:bold;
+                }
+                  .title4 {
+                    font-size:7pt;
+                    font-weight:bold;
+                }
+                   .title5 {
+                    font-size:7pt;
+                }
+                .messageInfo {
+                    vertical-align:middle;
+                }
+
+                .messageWarn {
+                }
+
+                .messageError {
+                }
+
+                .messageFatal {
+                }
+
+                .globalMessages {
+                    color:red;
+                    font-size: 12px;
+                    border: 1px solid #2D5284;
+                    width:98%;
+                    padding: 5px;
+                    background-image: url('img/bg_messages.png');
+                    font-family: arial, sans-serif;
+                }
+
+    </style>
+   
+        <title>Facelets Template</title>
+    </head>
+    
+    <body>
+        
+
+            <ui:insert name="top" >
+           
+                  
+                    <h:form>
+
+                        <rich:toolBar width="100%" >
+
+
+            <rich:dropDownMenu>
+                <f:facet name="label">
+                    <h:panelGroup>
+                        <h:graphicImage value="/icons/house.png" />
+                        <h:outputText value=" Clubs"/>
+                    </h:panelGroup>
+                </f:facet>
+                <rich:menuItem  value="Liste des Clubs" action="#{redirect.redirect}"
+                     icon="/icons/create_doc.gif">
+                    <f:param name="outcome" value="club"/>
+                   
+                </rich:menuItem>
+                <rich:menuItem submitMode="ajax" value="Ajouter un club" action="#{redirect.redirect}"
+                     icon="/icons/create_doc.gif">
+                    <f:param name="outcome" value="ajouterUnClub"/>
+                </rich:menuItem>
+            </rich:dropDownMenu>
+
+             <rich:dropDownMenu>
+                <f:facet name="label">
+                    <h:panelGroup>
+                        <h:graphicImage value="/icons/copy.gif" />
+                        <h:outputText value="Dirigents"/>
+                    </h:panelGroup>
+                </f:facet>
+                 <rich:menuItem submitMode="ajax" value="Liste des dirigents" action="#{redirect.redirect}"
+                     icon="/icons/create_doc.gif">
+                     <f:param name="outcome" value="listDirigents"/>
+                </rich:menuItem>
+                 <rich:menuItem submitMode="ajax" value="Ajouter un dirigent" action="#{redirect.redirect}"
+                     icon="/icons/create_doc.gif">
+                     <f:param name="outcome" value="ajoutDirigent"/>
+                </rich:menuItem>
+            </rich:dropDownMenu>
+
+            <rich:dropDownMenu>
+                <f:facet name="label">
+                    <h:panelGroup>
+                        <h:graphicImage value="/icons/user_gray.png" />
+                        <h:outputText value=" Joueurs"/>
+                    </h:panelGroup>
+                </f:facet>
+                <rich:menuItem submitMode="ajax" value="Liste des joueurs" action="#{redirect.redirect}"
+                     icon="/icons/create_doc.gif">
+                     <f:param name="outcome" value="listJoueur"/>
+                </rich:menuItem>
+                <rich:menuItem submitMode="ajax" value="Ajouter joueur"  action="#{redirect.redirect}"
+                     icon="/icons/create_doc.gif">
+                    <f:param name="outcome" value="ajoutJoueur"/>
+                </rich:menuItem>
+            </rich:dropDownMenu>
+
+
+             <rich:dropDownMenu>
+                <f:facet name="label">
+                    <h:panelGroup>
+                        <h:graphicImage value="/icons/copy.gif" />
+                        <h:outputText value="Entraineurs"/>
+                    </h:panelGroup>
+                </f:facet>
+                <rich:menuItem submitMode="ajax" value="Liste des Entraineurs" action="#{redirect.redirect}"
+                     icon="/icons/create_doc.gif">
+                    <f:param name="outcome" value="listEntrain"/>
+                </rich:menuItem>
+                <rich:menuItem submitMode="ajax" value="Ajouter un entraineur" action="#{redirect.redirect}"
+                     icon="/icons/create_doc.gif">
+                    <f:param name="outcome" value="ajoutEntrain"/>
+                </rich:menuItem>
+            </rich:dropDownMenu>
+
+            <rich:dropDownMenu>
+                <f:facet name="label">
+                    <h:panelGroup>
+                        <h:graphicImage value="/icons/copy.gif" />
+                        <h:outputText value="Entraineurs-adjoint"/>
+                    </h:panelGroup>
+                </f:facet>
+                <rich:menuItem submitMode="ajax" value="Liste entraineurs-adjoint" action="#{redirect.redirect}"
+                     icon="/icons/create_doc.gif">
+                     <f:param name="outcome" value="listentrainAdj"/>
+                </rich:menuItem>
+                <rich:menuItem submitMode="ajax" value="Ajouter entraineur-adjoint" action="#{redirect.redirect}"
+                     icon="/icons/create_doc.gif">
+                    <f:param name="outcome" value="ajoutEADJ"/>
+                </rich:menuItem>
+            </rich:dropDownMenu>
+
+             <rich:dropDownMenu>
+                <f:facet name="label">
+                    <h:panelGroup>
+                        <h:graphicImage value="/icons/copy.jpg" />
+                        <h:outputText value="Arbitres"/>
+                    </h:panelGroup>
+                </f:facet>
+                 <rich:menuItem submitMode="ajax" value="Liste des arbitres" action="#{redirect.redirect}"
+                     icon="/icons/create_doc.gif">
+                     <f:param name="outcome" value="listArbitres"/>
+                </rich:menuItem>
+                 <rich:menuItem submitMode="ajax" value="Ajouter un arbitre" action="#{redirect.redirect}"
+                     icon="/icons/create_doc.gif">
+                     <f:param name="outcome" value="ajoutArbitre"/>
+                </rich:menuItem>
+            </rich:dropDownMenu>
+
+              <rich:dropDownMenu>
+                <f:facet name="label">
+                    <h:panelGroup>
+                        <h:graphicImage value="/icons/sitemap.png" />
+                        <h:outputText value=" Competitions"/>
+                    </h:panelGroup>
+                </f:facet>
+                  <rich:menuItem submitMode="ajax" value="Liste des competitions" action="#{redirect.redirect}"
+                     icon="/icons/create_doc.gif">
+                      <f:param name="outcome" value="listTournois"/>
+                </rich:menuItem>
+                  <rich:menuItem submitMode="ajax" value="Ajouter une competition" action="#{redirect.redirect}"
+                     icon="/icons/create_doc.gif">
+                      <f:param name="outcome" value="ajoutTournois"/>
+                </rich:menuItem>
+            </rich:dropDownMenu>
+
+            
+            <rich:toolBarGroup location="right">
+                <rich:dropDownMenu value="Search" direction="bottom-left" jointPoint="br" styleClass="search">
+                    <rich:menuItem submitMode="none">
+                        <h:inputText value="" id="searchinput"/>
+                        <button type="button">Search</button>
+                    </rich:menuItem>
+                    <rich:menuItem value="Enter your search criteria here" disabled="true"></rich:menuItem>
+                </rich:dropDownMenu>
+            </rich:toolBarGroup>
+        </rich:toolBar>
+    </h:form>
+                <rich:spacer height="3px"/>
+                <rich:separator width="100%" height="10px" />
+                    
+              
+                <rich:spacer height="3px"/>
+                
+
+            </ui:insert>
+        
+        
+    
+            <ui:insert name="content">Content</ui:insert>
+    
+        
+    </body>
+    
+</html>
