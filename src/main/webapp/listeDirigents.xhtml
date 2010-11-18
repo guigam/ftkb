@@ -34,22 +34,14 @@
                             <f:facet name="header">
                                 <h:outputText value="Numero de Licence/Club"/>
                             </f:facet>
-                           
-                            
-                          <h:panelGrid columns="2">
-                          <rich:spacer />
-                           
                              	<h:panelGrid columns="2">
                              				 <h:outputText value="Date: " styleClass="title4"/> 
 			                                 <h:outputText value="#{e.currentHistorique.dateDebut}" styleClass="title5" />
 			                            	 <h:outputText value="Numero de Licence: " styleClass="title4"/> 
 			                            	 <h:outputText value="#{e.currentHistorique.licence}" styleClass="title5"/> 
+			                            	 <h:outputLabel value="Club"/>
+			                            	 <h:outputText value="#{e.leClubDirigent.nomClub}" styleClass="title5" />
                           		</h:panelGrid>
-                                                                                                                                   
-                            <h:outputText value="Club: " styleClass="title4"/>
-                            <h:outputText styleClass="title5" />
-                         </h:panelGrid>
-                            
                         </rich:column>
                         <rich:column width="50%">
                             <f:facet name="header">
