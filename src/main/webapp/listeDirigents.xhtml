@@ -38,14 +38,14 @@
                             
                           <h:panelGrid columns="2">
                           <rich:spacer />
-                            <rich:dataList  value="#{e.lst_histoDirigents}" var="h" title="Licence">
+                           
                              	<h:panelGrid columns="2">
                              				 <h:outputText value="Date: " styleClass="title4"/> 
-			                                 <h:outputText value="#{h.dateDebut}" styleClass="title5" />
+			                                 <h:outputText value="#{e.currentHistorique.dateDebut}" styleClass="title5" />
 			                            	 <h:outputText value="Numero de Licence: " styleClass="title4"/> 
-			                            	 <h:outputText value="#{h.licence}" styleClass="title5"/> 
+			                            	 <h:outputText value="#{e.currentHistorique.licence}" styleClass="title5"/> 
                           		</h:panelGrid>
-                            </rich:dataList>                                                                                                                
+                                                                                                                                   
                             <h:outputText value="Club: " styleClass="title4"/>
                             <h:outputText styleClass="title5" />
                          </h:panelGrid>

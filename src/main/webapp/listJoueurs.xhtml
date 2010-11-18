@@ -44,22 +44,22 @@
                         <h:outputText value="Licence"/>
                         <h:inputText value="#{gestionDesJoueurs.lejoueur.licence}"/>
                         <a4j:commandButton value="recherche" action="#{gestEntrainAdj.monClub}" reRender="tab"/>
-                        <h:commandButton action="#{gestEntrainAdj.monClub}" value="test"/>
+                        <h:commandButton action="#{gestionDesJoueurs.recherchelstJoueurPAram}" value="test"/>
                         </h:panelGrid>
                     </rich:panel>
                     <rich:spacer height="10px"/>
-                    <a4j:outputPanel id="tab">
+                    <!--<a4j:outputPanel id="tab">
                         <a4j:outputPanel id="tab1" rendered="#{empty gestionDesJoueurs.lesJoueurs }">
                                 <h:outputText value="Resultat" styleClass="title2"/>
                                 <rich:separator width="100%" height="7px"/>
                                 <rich:spacer height="10px"/>
                                 <h:outputText value="Aucun resultat trouvé"/>
-                        </a4j:outputPanel>
-                        <a4j:outputPanel id="tab2" rendered="#{not empty gestionDesJoueurs.lesJoueurs}">
+                        </a4j:outputPanel>-->
+                        <a4j:outputPanel id="tab2" value="#{gestionDesJoueurs.lesJoueurs}">
                                 <h:outputText value="Resultat" styleClass="title2"/>
                                 <rich:separator width="100%" height="7px"/>
                                 <rich:spacer height="10px"/>
-                                <rich:dataTable value="#{gestionDesJoueurs.lesJoueurs}" var="e" width="100%" >
+                                <rich:dataTable value="#{gestionDesJoueurs.listDesJoueurs}" var="e" width="100%" >
                                     <rich:column width="20%" >
                                     <f:facet name="header">
                                         <h:outputText value="Joueurs"/>
@@ -123,7 +123,7 @@
 
                            </rich:dataTable>
                     </a4j:outputPanel>
-                    </a4j:outputPanel>
+<!--                    </a4j:outputPanel>-->
                </rich:panel>
              </h:form>
             </ui:define>

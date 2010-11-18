@@ -3,6 +3,7 @@ package modeles;
 import java.io.Serializable;
 
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,6 +24,7 @@ public class Historique implements Serializable {
 	@Temporal(javax.persistence.TemporalType.DATE)
 	private Date dateDebut;
 	@Temporal(javax.persistence.TemporalType.DATE)
+	@Column(name="dateFin")
 	private Date dateFin;
 	private String licence;
 	

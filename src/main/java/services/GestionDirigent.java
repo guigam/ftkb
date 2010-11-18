@@ -95,17 +95,18 @@ public class GestionDirigent {
         
         Query query = em.createQuery("from Dirigents d where d.etat <> 1");
         List<Dirigents> lst_dirigents = query.getResultList();
-        for(Dirigents d :lst_dirigents){
-        Dirigents dr = new Dirigents();
-       
-      	dr.setLaPersonne(d.getLaPersonne());
-      	dr.setLst_histoDirigents(new gestionHistorique().licenceCourantduDirigent(d));
-      	
-      	lesDirigents.add(dr);
-      	
-      }
+//        for(Dirigents d :lst_dirigents){
+//        Dirigents dr = new Dirigents();
+//       
+//      	dr.setLaPersonne(d.getLaPersonne());
+//      	dr.setLst_histoDirigents(new gestionHistorique().licenceCourantduDirigent(d));
+//      	
+//      	lesDirigents.add(dr);
+//      	
+//      }
       //  lesDirigents = query.getResultList(); 
-        return lesDirigents;
+
+        return lst_dirigents;
     }
 
 

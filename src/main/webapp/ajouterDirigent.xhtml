@@ -43,8 +43,8 @@
             <h:panelGrid columns="2" >
           <h:panelGrid columns="2">
           <h:outputText value="Club"/>
-          <rich:comboBox value="#{gsDirigent.leDirigent.leClubDirigent}"   defaultLabel="Choisissez un CLub">         
-          	<f:selectItems itemLabel="#{gestionClubs.listeDesClubsItem}" itemValue="#{gestionClubs.listeDesClubsItem}" value="#{gestionClubs.listeDesClubsItem}" />
+          <rich:comboBox value="#{gsDirigent.leDirigent.leClubDirigent}" converter="ClubConverter" defaultLabel="Choisissez un CLub" >         
+          	<f:selectItems var="club" itemLabel="#{club.nomClub}" value="#{gestionClubs.listeDesClubsItem}" />
           </rich:comboBox>        
           <h:outputText value="Date Debut"/>
           <rich:calendar value="#{gsDirigent.m_historique.dateDebut}" id="date" required="true" requiredMessage="date #{msgValidator.msgObligatoire}"/>
@@ -99,7 +99,7 @@
 
                   </rich:dataTable>
                             <rich:spacer height="20px"/>
-                            <h:commandButton value="valider" action="#{gsDirigent.saveDirigentEtPersonne}"/>
+                            <h:commandButton value="valider" action="#{gsDirigent.saveDirigentEtPersonne}" />
                  </a4j:outputPanel>               
                                      
                   

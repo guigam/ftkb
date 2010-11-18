@@ -13,7 +13,9 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Temporal;
+import javax.persistence.Transient;
 
 /**
  *
@@ -29,9 +31,22 @@ public  class Dirigents extends Acteurs {
     @OneToMany(mappedBy="m_dirigents")
     private List<HistoriqueDirigent> lst_histoDirigents;
     
-
- 
-
+    @Transient
+    public HistoriqueDirigent getCurrentHistorique() {
+    	Date now = new Date();
+    	if (lst_histoDirigents.size() > 0) {
+    		for (HistoriqueDirigent hd : lst_histoDirigents) {
+    			if (hd.getDateDebut().compareTo(now)<0 && hd.getDateFin().compareTo(now)>0)
+    				return hd;
+    		}
+    	}
+    		
+    	return null;
+    }
+    
+    public void setCurrentHistorique(HistoriqueDirigent h) {
+    	
+    }
 
 
 	@Override

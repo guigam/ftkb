@@ -1,2 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pageflow:Pageflow xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf12898658586220" configfile="/ftkb/src/main/webapp/WEB-INF/faces-config.xml"/>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf12898658586220" configfile="/ftkb/src/main/webapp/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="*" x="122" y="3634" id="pf12900410765620" outlinks="pf12900410765621 pf12900410765622 pf12900410765623 pf12900410765624 pf12900410765625 pf12900410765626 pf12900410765627 pf12900410765628 pf12900410765629 pf129004107656210 pf129004107656211 pf129004107656212 pf129004107656213 pf129004107656214 pf129004107656215 pf129004107656216 pf129004107656217 pf129004107656218 pf129004107656219 pf129004107656220 pf129004107656221" path="*"/>
+  <nodes xsi:type="pageflow:PFPage" name="ajouterCompetition.xhtml" x="338" y="178" id="pf129004107656222" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf12900410765621" path="/ajouterCompetition.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="ajouterUnCLub.xhtml" x="338" y="562" id="pf129004107656223" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" inlinks="pf12900410765622" path="/ajouterUnCLub.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="ajouterJoueurPersonne.xhtml" x="338" y="946" id="pf129004107656224" referenceLink="//@navigationRule.2/@navigationCase.0/@toViewId|" inlinks="pf12900410765623" path="/ajouterJoueurPersonne.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="ajouterEntraineurADJPersonne.xhtml" x="338" y="1330" id="pf129004107656225" referenceLink="//@navigationRule.4/@navigationCase.0/@toViewId|" inlinks="pf12900410765624 pf12900410765625" path="/ajouterEntraineurADJPersonne.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="ajouterEntraineurPersonne.xhtml" x="338" y="1714" id="pf129004107656226" referenceLink="//@navigationRule.5/@navigationCase.0/@toViewId|" inlinks="pf12900410765626" path="/ajouterEntraineurPersonne.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="ajouterDirigentPersonne.xhtml" x="338" y="2098" id="pf129004107656327" referenceLink="//@navigationRule.6/@navigationCase.0/@toViewId|" inlinks="pf12900410765627" path="/ajouterDirigentPersonne.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="affectationJoueur.xhtml" x="338" y="2482" id="pf129004107656328" referenceLink="//@navigationRule.7/@navigationCase.0/@toViewId|" inlinks="pf12900410765628" path="/affectationJoueur.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="detailTournois.xhtml" x="338" y="2866" id="pf129004107656329" referenceLink="//@navigationRule.8/@navigationCase.0/@toViewId|" inlinks="pf12900410765629" path="/detailTournois.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="listCompetition.xhtml" x="338" y="3250" id="pf129004107656330" referenceLink="//@navigationRule.9/@navigationCase.0/@toViewId|" inlinks="pf129004107656210" path="/listCompetition.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="listeEntraineurs.xhtml" x="338" y="3634" id="pf129004107656331" referenceLink="//@navigationRule.10/@navigationCase.0/@toViewId|" inlinks="pf129004107656211" path="/listeEntraineurs.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="listeDirigents.xhtml" x="338" y="4018" id="pf129004107656332" referenceLink="//@navigationRule.11/@navigationCase.0/@toViewId|" inlinks="pf129004107656212" path="/listeDirigents.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="listClubs.xhtml" x="338" y="4402" id="pf129004107656333" referenceLink="//@navigationRule.12/@navigationCase.0/@toViewId|" inlinks="pf129004107656213" path="/listClubs.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="addJoueur.xhtml" x="338" y="4786" id="pf129004107656334" referenceLink="//@navigationRule.13/@navigationCase.0/@toViewId|" inlinks="pf129004107656214" path="/addJoueur.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="ajouterDirigent.xhtml" x="338" y="5170" id="pf129004107656335" referenceLink="//@navigationRule.14/@navigationCase.0/@toViewId|" inlinks="pf129004107656215" path="/ajouterDirigent.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="ajouterArbitre.xhtml" x="338" y="5554" id="pf129004107656336" referenceLink="//@navigationRule.15/@navigationCase.0/@toViewId|" inlinks="pf129004107656216" path="/ajouterArbitre.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="listJoueurs.xhtml" x="338" y="5938" id="pf129004107656337" referenceLink="//@navigationRule.16/@navigationCase.0/@toViewId|" inlinks="pf129004107656217" path="/listJoueurs.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="listArbitres.xhtml" x="338" y="6322" id="pf129004107656338" referenceLink="//@navigationRule.17/@navigationCase.0/@toViewId|" inlinks="pf129004107656218" path="/listArbitres.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="listEntraineurAdjoint.xhtml" x="338" y="6706" id="pf129004107656339" referenceLink="//@navigationRule.18/@navigationCase.0/@toViewId|" inlinks="pf129004107656219" path="/listEntraineurAdjoint.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="ajouterEntraineurAdj.xhtml" x="338" y="7090" id="pf129004107656340" referenceLink="//@navigationRule.19/@navigationCase.0/@toViewId|" inlinks="pf129004107656220" path="/ajouterEntraineurAdj.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="ajouterEntraineur.xhtml" x="338" y="7474" id="pf129004107656441" referenceLink="//@navigationRule.20/@navigationCase.0/@toViewId|" inlinks="pf129004107656221" path="/ajouterEntraineur.xhtml"/>
+  <links id="pf12900410765621" target="pf129004107656222" source="pf12900410765620" outcome="ajoutTournois"/>
+  <links id="pf12900410765622" target="pf129004107656223" source="pf12900410765620" outcome="ajouterUnClub"/>
+  <links id="pf12900410765623" target="pf129004107656224" source="pf12900410765620" outcome="ajoutJoueurPersonne"/>
+  <links id="pf12900410765624" target="pf129004107656225" source="pf12900410765620" outcome="ajoutArbitrePersonne"/>
+  <links id="pf12900410765625" target="pf129004107656225" source="pf12900410765620" outcome="ajoutEADJPersonne"/>
+  <links id="pf12900410765626" target="pf129004107656226" source="pf12900410765620" outcome="ajoutEntraineurPersonne"/>
+  <links id="pf12900410765627" target="pf129004107656327" source="pf12900410765620" outcome="ajouterDirigentPersonne"/>
+  <links id="pf12900410765628" target="pf129004107656328" source="pf12900410765620" outcome="affectation"/>
+  <links id="pf12900410765629" target="pf129004107656329" source="pf12900410765620" outcome="detailTournois"/>
+  <links id="pf129004107656210" target="pf129004107656330" source="pf12900410765620" outcome="listTournois"/>
+  <links id="pf129004107656211" target="pf129004107656331" source="pf12900410765620" outcome="listEntrain"/>
+  <links id="pf129004107656212" target="pf129004107656332" source="pf12900410765620" outcome="listDirigents"/>
+  <links id="pf129004107656213" target="pf129004107656333" source="pf12900410765620" outcome="club"/>
+  <links id="pf129004107656214" target="pf129004107656334" source="pf12900410765620" outcome="ajoutJoueur"/>
+  <links id="pf129004107656215" target="pf129004107656335" source="pf12900410765620" outcome="ajoutDirigent"/>
+  <links id="pf129004107656216" target="pf129004107656336" source="pf12900410765620" outcome="ajoutArbitre"/>
+  <links id="pf129004107656217" target="pf129004107656337" source="pf12900410765620" outcome="listJoueur"/>
+  <links id="pf129004107656218" target="pf129004107656338" source="pf12900410765620" outcome="listArbitres"/>
+  <links id="pf129004107656219" target="pf129004107656339" source="pf12900410765620" outcome="listentrainAdj"/>
+  <links id="pf129004107656220" target="pf129004107656340" source="pf12900410765620" outcome="ajoutEADJ"/>
+  <links id="pf129004107656221" target="pf129004107656441" source="pf12900410765620" outcome="ajoutEntrain"/>
+</pageflow:Pageflow>
