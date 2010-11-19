@@ -1,0 +1,118 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:f="http://java.sun.com/jsf/core">
+    
+    <body>
+        
+        <ui:composition template="./template.xhtml">
+            
+       
+
+            <ui:define name="content">
+            <h:form>
+                  <rich:panel>
+
+
+                      <h:panelGrid columns="2">
+                         <h:outputText value="Ajouter un Entraineur-Adjoint" styleClass="title1"/>
+                         <h:commandLink value="Ajouter" action="#{redirect.redirect}">
+                             <f:param name="outcome" value="ajoutEADJPersonne"/>
+                         </h:commandLink>
+                      </h:panelGrid>
+                    <rich:separator width="100%" height="7px"/>
+                    <rich:spacer height="10px"/>
+
+
+    <h:panelGrid width="100%" >
+        <h:panelGrid  width="100%">
+            <h:panelGrid columns="2" >
+          <h:panelGrid columns="2">
+          
+          <h:outputText value="Grade"/>
+          <rich:comboBox value="#{gestEntrainAdj.lentraineurAdj.grade}">
+              <f:selectItem itemValue="Noir"/>
+              <f:selectItem itemValue="Marron"/>
+              <f:selectItem itemValue="Blanc"/>
+              <f:selectItem itemValue="Rouge"/>
+          </rich:comboBox>
+          <h:outputText value="Date Debut"/>
+          <rich:calendar value="#{gestEntrainAdj.lentraineurAdj.dateDeb}" />
+          <h:outputText value="Numero Licence"/>
+          <h:inputText value="#{gestEntrainAdj.lentraineurAdj.licence}"/>
+          <h:outputText value="C.I.N"/>
+          <h:inputText value="#{gestEntrainAdj.laPersonnes.cin}"/>
+          </h:panelGrid>
+                <a4j:commandButton value ="Reccherche" action="#{gestEntrainAdj.listePersonneAdjByCIN}" reRender="tt" style="margin-bottom: 0px" />
+          </h:panelGrid>
+          
+              <a4j:outputPanel id="tt">
+
+                  <a4j:outputPanel id="rien" rendered="${empty gestEntrainAdj.lesPersonnes}">
+                            <h:outputText value="Aucun Resultat" style="font-size:14;font-weight:bold;" />
+                            <rich:separator height="5"/>
+                  </a4j:outputPanel>
+
+
+
+                  <a4j:outputPanel rendered="${not empty gestEntrainAdj.lesPersonnes}"  id="tt2">
+                      <h:outputText value=" Resultat" style="font-size:14;font-weight:bold;" />
+                            <rich:separator height="5"/>
+                            <rich:dataTable width="100%" value="#{gestEntrainAdj.lesPersonnes}"   var="tt" >
+                      <rich:column width="20%">
+                          <f:facet name="header">
+                              <h:outputText value="Nom et prenom"/>
+                          </f:facet>
+                          <h:outputText value="#{tt.nomPrenom}"/>
+                      </rich:column>
+                         <rich:column width="80%">
+                          <f:facet name="header">
+                              <h:outputText value="Informations"/>
+                          </f:facet>
+                             <h:panelGrid columns="2">
+                                 <h:outputText value="Telephone: "/>
+                                 <h:outputText value="#{tt.phone}"/>
+                                 <h:outputText value="email: "/>
+                                 <h:outputText value="#{tt.email}"/>
+                                 <h:outputText value="Adresse: "/>
+                                 <h:outputText value="#{tt.adresse}"/>
+                                 <h:outputText value="Date de naissance: "/>
+                                 <h:outputText value="#{tt.dns}"/>
+                             </h:panelGrid>
+                         
+                      </rich:column>
+
+                  </rich:dataTable>
+                            <rich:spacer height="20px"/>
+                            <h:commandButton value="valider" action="#{gestEntrainAdj.saveEntraineuradjoint}"/>
+                 </a4j:outputPanel>
+                                     
+                  
+               </a4j:outputPanel>
+          
+
+                               
+                          
+                                 
+                         
+
+
+                        
+
+
+      </h:panelGrid>
+    
+   </h:panelGrid>
+
+</rich:panel>
+</h:form>
+            </ui:define>
+
+        </ui:composition>
+        
+    </body>
+</html>

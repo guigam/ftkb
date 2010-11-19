@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    
+    <body>
+        
+        <ui:composition template="./template.xhtml">
+          
+
+            <ui:define name="content">
+                <rich:panel>
+                    <h:panelGrid columns="3">
+                        <h:outputText value="Ajouter un club" styleClass="title1"/>
+                        <rich:spacer width="20px"/>
+                        <rich:messages  styleClass="globalMessages"></rich:messages>
+                    </h:panelGrid>
+                        <rich:spacer width="3px"/>               
+                        <rich:separator width="100%" height="7px"/>
+                        <rich:spacer height="10px"/>
+
+                        
+                            <h:form>
+                                
+                                <center><h:panelGrid columns="2">                                    
+                                    <h:outputLabel value="NomClub:" for="nomClub" />
+                                    <h:inputText id="nomClub" value="#{gestionClubs.leClub.nomClub}" title="NomClub" required="true" requiredMessage="Nom du Club   #{msgValidator.msgObligatoire}" />
+                                    <h:outputLabel value="Phone:" for="phone" />
+                                    <h:inputText id="phone" value="#{gestionClubs.leClub.phone}" title="Phone" required="true" requiredMessage="telephone  #{msgValidator.msgObligatoire}"/>
+                                    <h:outputLabel value="Fax:" for="fax" />
+                                    <h:inputText id="fax" value="#{gestionClubs.leClub.fax}" title="Fax" />
+                                    <h:outputLabel value="Email:" for="email" />
+                                    <h:inputText id="email" value="#{gestionClubs.leClub.email}" title="Email" />
+                                    <h:outputLabel value="Adresse:" for="adresse" />
+                                    <h:inputTextarea  cols="50" rows="3" id="adresse" value="#{gestionClubs.leClub.adresse}" title="Adresse" required="true" requiredMessage="Adresse  #{msgValidator.msgObligatoire}"/>
+                                    <h:commandButton value="valider" action="#{gestionClubs.saveClub}"/>
+                                    </h:panelGrid></center>
+                            </h:form>
+
+
+
+                    </rich:panel>
+            </ui:define>
+
+        </ui:composition>
+        
+    </body>
+</html>

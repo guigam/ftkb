@@ -1,0 +1,126 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:rich="http://richfaces.org/rich">
+    <style>
+        .panel{
+            width:20px;
+            background-color: red;
+        }
+    </style>
+    
+    <body>
+        
+        <ui:composition template="./template.xhtml">
+  
+
+            <ui:define name="content">
+                <h:form>
+                  <rich:panel>                   
+                    <h:outputText value="Détail Tournois" styleClass="title1"/>
+                    <rich:separator width="100%" height="7px"/>
+                    <rich:spacer height="10px"/>
+
+                    <h:panelGrid  columns="3" columnClasses="top1,,top2" width="40%">
+                    <h:panelGrid  columns="2" >
+                        <h:outputText value="Nom tournois: " styleClass="title2"/>
+                        <h:outputText value="#{gsCompetition.m_Tournoi.nomTournois}"/>
+                        <h:outputText value="Date: " styleClass="title2"/>
+                        <h:outputText value="#{gsCompetition.m_Tournoi.dateTournois}"/>
+                        <h:outputText value="Endroit: " styleClass="title2"/>
+                        <h:outputText value="#{gsCompetition.m_Tournoi.endroit}"/>
+                    </h:panelGrid>
+                        <rich:spacer width="20px"/>
+                        <h:commandButton value="Generer l'arbre" action="#{gsCompetition.genererArbre}"/>
+                    </h:panelGrid>
+
+                    <rich:spacer height="8px"/>                  
+                    <rich:separator width="100%" height="7px"/>
+                    <rich:spacer height="8px"/>
+
+                    <rich:tabPanel width="100%" height="400"  >
+                        <rich:tab label="List des Joueurs"  >
+                            <h:panelGrid  cellspacing="5" columns="3" columnClasses="top3,,top4" width="100%">
+                                <h:panelGrid columns="1">
+                                    <h:commandLink value="Ajouter un joueur à la liste" action="#{redirect.redirect}" styleClass="title2">
+                                            <f:param name="outcome" value="affectation"/>
+                                        </h:commandLink>
+                                    <rich:spacer height="10px"/>
+
+                                    <rich:panel header="Filtres" >
+                                        <h:panelGrid columns="1">
+                                            <h:outputText value="Club" styleClass="title2"/>
+                                            <rich:comboBox></rich:comboBox>
+                                            <h:outputText value="Poid" styleClass="title2"/>
+                                            <rich:comboBox></rich:comboBox>
+                                            <h:outputText value="Specialité" styleClass="title2"/>
+                                            <rich:comboBox></rich:comboBox>
+                                            <h:commandButton value="Recherche" styleClass="title2"/>
+                                        </h:panelGrid>
+                                    </rich:panel>
+                                </h:panelGrid>
+                                <rich:separator width="3" height="320"/>
+                            <rich:dataTable value="#{gsCompetition.m_Tournoi.lesParticipations}" var="j" width="100%">
+                                <rich:column width="40%">
+                                    <f:facet name="header">
+                                        <h:outputText value="Joueurs"/>
+                                    </f:facet>
+                                    <h:outputText value="#{j.leJoueur.laPersonne.nomPrenom}"/>
+                                </rich:column >
+                                <rich:column width="20%">
+                                    <f:facet name="header">
+                                        <h:outputText value="date de Naissance"/>
+                                    </f:facet>
+                                    <h:outputText value="#{j.leJoueur.laPersonne.dns}"/>
+                                </rich:column >
+                                <rich:column width="10%">
+                                    <f:facet name="header">
+                                        <h:outputText value="Poid"/>
+                                    </f:facet>
+                                    <h:outputText value="#{j.poidJoueur}"/>
+                                </rich:column>
+                                <rich:column width="20%">
+                                    <f:facet name="header">
+                                        <h:outputText value="specialité"/>
+                                    </f:facet>
+                                    <h:outputText value="#{j.spec}"/>
+                                </rich:column>
+                                <rich:column width="10%">
+                                    <f:facet name="header">
+                                        <h:outputText value="--"/>
+                                    </f:facet>
+                                    <center><h:commandButton image="/icons/delete.gif"/></center>
+                                </rich:column>
+                            </rich:dataTable>
+                         </h:panelGrid>
+                        </rich:tab>
+                        <rich:tab label="List des Arbitres">
+                            <h:panelGrid  cellspacing="5" columns="3" columnClasses="top3,,top4" width="100%">
+                                <h:panelGrid columns="2">
+                                    <h:commandLink value="Ajouter un joueur à la liste" action="#{redirect.redirect}" styleClass="title2">
+                                        <f:param name="outcome" value="affectation"/>
+                                    </h:commandLink>
+                                    <rich:dataList value="#{gsCompetition.m_Tournoi.lesArbitres}" var="j">
+                                        <h:outputText value="#{j.laPersonne.nomPrenom}" />
+                                    </rich:dataList>
+                                   
+                                </h:panelGrid>
+                            </h:panelGrid>
+                                
+                            
+                        </rich:tab>
+
+                        </rich:tabPanel>
+
+</rich:panel>
+</h:form>
+            </ui:define>
+
+        </ui:composition>
+        
+    </body>
+</html>
