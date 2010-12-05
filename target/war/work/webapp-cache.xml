@@ -13,6 +13,7 @@
           <string>detailTournois.xhtml</string>
           <string>WEB-INF/web.xml</string>
           <string>WEB-INF/.faces-config.xml.jsfdia</string>
+          <string>WEB-INF/sun-web.xml</string>
           <string>WEB-INF/faces-config.xml</string>
           <string>icons/email.png</string>
           <string>icons/medal_silver_3.png</string>
@@ -1053,9 +1054,11 @@
           <string>ajouterUnCLub.xhtml</string>
           <string>WEB-INF/classes/META-INF/persistence.xml</string>
           <string>WEB-INF/classes/META-INF/skins/gfplus.skin.properties</string>
-          <string>WEB-INF/classes/converters/specialiteConverter.class</string>
+          <string>WEB-INF/classes/converters/SpecialiteConverter.class</string>
           <string>WEB-INF/classes/converters/ClubConverter.class</string>
           <string>WEB-INF/classes/validator/validerCIN.class</string>
+          <string>WEB-INF/classes/service/serviceClub.class</string>
+          <string>WEB-INF/classes/service/serviceClubImpl.class</string>
           <string>WEB-INF/classes/modeles/Arbre.class</string>
           <string>WEB-INF/classes/modeles/specialite.class</string>
           <string>WEB-INF/classes/modeles/Users.class</string>
@@ -1064,6 +1067,7 @@
           <string>WEB-INF/classes/modeles/HistoriqueEntraineurs.class</string>
           <string>WEB-INF/classes/modeles/EntraineurAdjoint.class</string>
           <string>WEB-INF/classes/modeles/Personnes.class</string>
+          <string>WEB-INF/classes/modeles/HistoriqueJoueurs.class</string>
           <string>WEB-INF/classes/modeles/Acteurs.class</string>
           <string>WEB-INF/classes/modeles/Dirigents.class</string>
           <string>WEB-INF/classes/modeles/HistoriqueDirigent.class</string>

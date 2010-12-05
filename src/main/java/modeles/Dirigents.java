@@ -36,7 +36,7 @@ public  class Dirigents extends Acteurs {
     	Date now = new Date();
     	if (lst_histoDirigents.size() > 0) {
     		for (HistoriqueDirigent hd : lst_histoDirigents) {
-    			if (hd.getDateDebut().compareTo(now)<0 && hd.getDateFin().compareTo(now)>0)
+    			if (hd.getDateDebut().compareTo(now)<=0 && hd.getDateFin().compareTo(now)>=0)
     				return hd;
     		}
     	}

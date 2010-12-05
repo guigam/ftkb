@@ -53,32 +53,40 @@ public class GestionDirigent {
     
     
 
-    public String saveDirigent() {
-    
-       Query qq = em.createQuery("from Dirigents d where d.laPersonne = ?1");
-       qq.setParameter(1, laPersonnes);
-       Dirigents dirig = (Dirigents) qq.getResultList().get(0);
-       if(qq.getResultList().size() < 0){
+    public void saveDirigent() {
     	  //on crée un nouveau dirigent
-        leDirigent.setLaPersonne(laPersonnes);      
+    	List<HistoriqueDirigent> lstHD = new LinkedList<HistoriqueDirigent>();
+    	lstHD.add(m_historique);
+    	leDirigent.setLst_histoDirigents(lstHD);
+        leDirigent.setLaPersonne(lesPersonnes.get(0));      
         em.getTransaction().begin();
+        try{
         em.persist(leDirigent);
+        }catch (Exception e) {
+			// TODO: handle exception
+        	em.getTransaction().rollback();
+		}
         em.getTransaction().commit();
-        saveHisto(m_historique);
-        }else{
-        	 //om met a jour le dirigent         
-        	try{
-	        	new gestionHistorique().mettreAJourHistoriqueDirigent(m_historique,dirig);
-	        	new gestionHistorique().AjouterHistoriqueDirigent(m_historique,dirig);
-        	}catch (Exception e) {
-				// TODO: handle exception
-			}
-        }
-        
-
-        return "listDirigents";
+        //return "listDirigents";
     }
 
+    public void miseAjourHistorique(Dirigents leDirig, HistoriqueDirigent p_HD){
+    	Query query = em.createQuery("from HistoriqueDirigent h where h.m_dirigents = 1? and h.dateDebut = ?2 and h.dateFin = ?3");
+    	query.setParameter(1, leDirig);
+    	query.setParameter(2, p_HD.getDateDebut());
+    	query.setParameter(3, p_HD.getDateFin());
+    	HistoriqueDirigent hd = (HistoriqueDirigent) query.getResultList().get(0);
+    	hd.setDateFin(p_HD.getDateDebut());
+    	em.getTransaction().begin();
+    	try{
+    		em.persist(hd);
+    	}catch (Exception e) {
+			// TODO: handle exception
+    		em.getTransaction().rollback();
+		}
+    	em.getTransaction().commit();
+    }	
+    
     public String saveDirigentEtPersonne(){
         try{
         new gestionPersonnes().enregistrerPersonne(laPersonnes);
@@ -111,18 +119,7 @@ public class GestionDirigent {
 
 
         
-        
-        public void saveHisto(HistoriqueDirigent monHisto){
-        	try{
-        	m_historique.setM_dirigents(leDirigent);
-        	em.getTransaction().begin();	
-    		em.persist(monHisto);
-    		em.getTransaction().commit();
-        	}catch(Exception e){
-                em.getTransaction().rollback();
-            }
-    		
-    	}
+  
     /**
      * @return the leDirigent
      */

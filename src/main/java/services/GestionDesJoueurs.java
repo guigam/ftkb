@@ -12,6 +12,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 import modeles.Entraineurs;
+import modeles.HistoriqueJoueurs;
 import modeles.Joueur;
 import modeles.Personnes;
 import modeles.specialite;
@@ -30,14 +31,17 @@ public class GestionDesJoueurs {
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("gestion");
     private EntityManager em = emf.createEntityManager();
     private List<specialite> mesSpecial = new LinkedList<specialite>();
+    private HistoriqueJoueurs m_historique = new HistoriqueJoueurs();
      /** Creates a new instance of GestionDesJoueurs */
     public GestionDesJoueurs() {
     }
-    public Personnes listePersonneByCIN(){
-      lesPersonnes = new gestionPersonnes().getlistePersonneByCIN(getMonPersonne().getCin());
-        monPersonne = lesPersonnes.get(0);
-        return monPersonne;
+
+    public List<Personnes> listePersonneByCIN() {
+        System.out.println("test");
+        lesPersonnes = new gestionPersonnes().getlistePersonneByCIN(getMonPersonne().getCin());
+        return  lesPersonnes;
     }
+
     public Joueur rechercheJoueurParLicence(String licence) {
         Query query = em.createQuery("select j from Joueur j where j.licence = ?1");
         query.setParameter(1, licence);
@@ -182,6 +186,20 @@ public class GestionDesJoueurs {
      */
     public void setMesSpecial(List<specialite> mesSpecial) {
         this.mesSpecial = mesSpecial;
+    }
+
+    /**
+     * @return the m_historique
+     */
+    public HistoriqueJoueurs getM_historique() {
+        return m_historique;
+    }
+
+    /**
+     * @param m_historique the m_historique to set
+     */
+    public void setM_historique(HistoriqueJoueurs m_historique) {
+        this.m_historique = m_historique;
     }
 
 

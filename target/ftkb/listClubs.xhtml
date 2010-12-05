@@ -25,7 +25,7 @@
                     <rich:spacer height="10px"/>
 
 
-                    <rich:dataTable width="100%" value="#{gestionClubs.lesClubs}" var="list">
+                    <rich:dataTable width="100%" value="#{gestionClubs.listedesClub()}" var="list">
                         <rich:column width="20%" filterBy="#{list.nomClub}" filterEvent="onkeyup">
                             <f:facet name="header">
                                 <h:outputText value="nom du Club"/>

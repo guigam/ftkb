@@ -1,51 +1,71 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
-	xmlns:rich="http://richfaces.org/rich">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:f="http://java.sun.com/jsf/core">
 
-    
     <body>
-        
+
         <ui:composition template="./template.xhtml">
-  
+
+
 
             <ui:define name="content">
-                <h:form>
+
                   <rich:panel>
-
-
-                      <h:panelGrid columns="2">
+                    <h:form>
+                      <h:panelGrid columns="3">
                          <h:outputText value="Ajouter un Joueur" styleClass="title1"/>
                          <h:commandLink value="Ajouter" action="#{redirect.redirect}">
-                             <f:param name="outcome" value="ajoutJoueurPersonne"/>
+                             <f:param name="outcome" value="ajouterDirigentPersonne"/>
                          </h:commandLink>
-                      </h:panelGrid>
+                         <h:panelGrid>
+                             <rich:spacer width="20px"/>
+                             <rich:messages  styleClass="globalMessages">
+                                 <f:facet name="globalMessages">
+                                     <h:graphicImage  value="/img/error.png"/>
+                                 </f:facet>
+                             </rich:messages>
+                         </h:panelGrid>
+
+                         </h:panelGrid>
+
                     <rich:separator width="100%" height="7px"/>
                     <rich:spacer height="10px"/>
+           </h:form>
+           <h:form>
 
-<h:panelGrid width="100%" >
+    <h:panelGrid width="100%" >
         <h:panelGrid  width="100%">
             <h:panelGrid columns="2" >
           <h:panelGrid columns="2">
-
-          <h:outputText value="Grade"/>
-          <rich:comboBox value="#{gestionDesJoueurs.lejoueur.grade}">
-              <f:selectItem itemValue="Noir"/>
-              <f:selectItem itemValue="Marron"/>
-              <f:selectItem itemValue="Blanc"/>
-              <f:selectItem itemValue="Rouge"/>
-          </rich:comboBox>
           <h:outputText value="Date Debut"/>
-          <rich:calendar value="#{gestionDesJoueurs.lejoueur.dateDebut}" />
+          <rich:calendar value="#{gestionDesJoueurs.m_historique.dateDebut}" id="date" required="true" requiredMessage="date #{msgValidator.msgObligatoire}"/>
+          <h:outputText value="Club"/>
+          <rich:comboBox value="#{gestionDesJoueurs.lejoueur.leClubJoueur}" converter="ClubConverter" defaultLabel="Choisissez un CLub" required="true" requiredMessage="Club #{msgValidator.msgObligatoire}" >
+          	<f:selectItems var="club" itemLabel="#{club.nomClub}" value="#{gestionClubs.listeDesClubsItem}" />
+          </rich:comboBox>
+           <h:outputText value="Catégorie"/>
+          <rich:comboBox value="#{gestionDesJoueurs.lejoueur.categorie}" defaultLabel="Choisissez une catégorie" required="true" requiredMessage="Club #{msgValidator.msgObligatoire}" >
+          	<f:selectItem itemValue="Minimes"  />
+          	<f:selectItem itemValue="Juniors"  />
+          	<f:selectItem itemValue="Cadets"  />
+          	<f:selectItem itemValue="Seniors"  />
+          </rich:comboBox>
           <h:outputText value="Numero Licence"/>
-          <h:inputText value="#{gestionDesJoueurs.lejoueur.licence}"/>
+          <h:inputText value="#{gestionDesJoueurs.m_historique.licence}" required="true" id="lic" requiredMessage="Licence #{msgValidator.msgObligatoire}">
+
+          </h:inputText>
+
+
+
           <h:outputText value="C.I.N"/>
           <h:inputText value="#{gestionDesJoueurs.monPersonne.cin}"/>
           </h:panelGrid>
+                <h:commandButton value="valider" action="#{gestionDesJoueurs.saveJoueurs}" />
                 <a4j:commandButton value ="Reccherche" action="#{gestionDesJoueurs.listePersonneByCIN}" reRender="tt" style="margin-bottom: 0px" />
           </h:panelGrid>
 
@@ -61,12 +81,10 @@
                   <a4j:outputPanel rendered="${not empty gestionDesJoueurs.lesPersonnes}"  id="tt2">
                       <h:outputText value=" Resultat" style="font-size:14;font-weight:bold;" />
                             <rich:separator height="5"/>
-                            
-                            <h:outputLink value="#"  id="linkk" >
-                                Specialité
-                                <rich:componentControl for="panel" attachTo="linkk" operation="show" event="onclick"/>
-                            </h:outputLink>
-                            <rich:spacer height="10"/>
+                            <a4j:commandLink  value="Ajouter Specialitées" id="link">
+                            	    <rich:componentControl for="panel" attachTo="link" operation="show" event="onclick"/>
+                            </a4j:commandLink>
+                            <rich:spacer height="5"/>
                             <rich:dataTable width="100%" value="#{gestionDesJoueurs.lesPersonnes}"   var="tt" >
                       <rich:column width="20%">
                           <f:facet name="header">
@@ -93,16 +111,14 @@
 
                   </rich:dataTable>
                             <rich:spacer height="20px"/>
-                            <h:commandButton value="valider" action="#{gestionDesJoueurs.saveJoueurs}"/>
+
                  </a4j:outputPanel>
 
 
                </a4j:outputPanel>
 
       </h:panelGrid>
-   
-</h:panelGrid>
-                    <rich:modalPanel id="panel" autosized="false" resizeable="true" width="450" height="250" >
+	 <rich:modalPanel id="panel" autosized="false" resizeable="true" width="450" height="250" >
                         <f:facet name="header">
                             <h:panelGroup>
                                 <h:outputText value="Specialité"></h:outputText>
@@ -122,12 +138,13 @@
                      </rich:pickList>
                         </rich:panel>                       
                     </rich:modalPanel>
-                    
-</rich:panel>
+   </h:panelGrid>
 </h:form>
+</rich:panel>
+
             </ui:define>
 
         </ui:composition>
-        
+
     </body>
 </html>

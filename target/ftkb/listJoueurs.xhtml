@@ -27,8 +27,8 @@
                     <rich:panel>
                         <h:panelGrid columns="2">
                         <h:outputText value="Club"/>
-                        <rich:comboBox >
-                            <f:selectItems value="#{gestionClubs.listeDesClubsItem}"/>
+                        <rich:comboBox converter="ClubConverter">
+                            <f:selectItems value="#{gestionClubs.listedesClubItem()}"/>
                         </rich:comboBox>
                         <h:outputText value="Grade" />
                         <rich:comboBox >
@@ -38,12 +38,12 @@
                             <f:selectItem itemValue="Rouge"/>
                         </rich:comboBox>
                         <h:outputText value="Specialité"/>
-<!--                        <rich:comboBox >
+                        <rich:comboBox converter="spec">
                             <f:selectItems value="#{spec.listSpecialiteItem}"/>
-                        </rich:comboBox>-->
+                        </rich:comboBox>
                         <h:outputText value="Licence"/>
                         <h:inputText value="#{gestionDesJoueurs.lejoueur.licence}"/>
-                        <a4j:commandButton value="recherche" action="#{gestEntrainAdj.monClub}" reRender="tab"/>
+                        <a4j:commandButton value="recherche" action="#{ges.monClub}" reRender="tab"/>
                         <h:commandButton action="#{gestionDesJoueurs.recherchelstJoueurPAram}" value="test"/>
                         </h:panelGrid>
                     </rich:panel>

@@ -58,6 +58,7 @@
           <h:outputText value="C.I.N"/>
           <h:inputText value="#{gsDirigent.laPersonnes.cin}"/>
           </h:panelGrid>
+          <h:commandButton value="valider" action="#{gsDirigent.saveDirigent}" />
                 <a4j:commandButton value ="Reccherche" action="#{gsDirigent.listePersonneByCIN}" reRender="tt" style="margin-bottom: 0px" />
           </h:panelGrid>
           
@@ -99,7 +100,7 @@
 
                   </rich:dataTable>
                             <rich:spacer height="20px"/>
-                            <h:commandButton value="valider" action="#{gsDirigent.saveDirigentEtPersonne}" />
+                            
                  </a4j:outputPanel>               
                                      
                   
