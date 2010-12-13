@@ -5,13 +5,19 @@
 
 package services;
 
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+
+import services.ServiceJoueur.ServiceJoueurImpl;
+
+import ServicePersonne.ServicePersonneImpl;
 import modeles.Entraineurs;
+import modeles.Historique;
 import modeles.Joueur;
 import modeles.Personnes;
 import modeles.specialite;
@@ -27,46 +33,52 @@ public class GestionDesJoueurs {
     private Personnes monPersonne = new Personnes();
     private List<Personnes> lesPersonnes = new LinkedList<Personnes>();   
     private List<Joueur> lesJoueurs = new LinkedList<Joueur>();
-    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("gestion");
-    private EntityManager em = emf.createEntityManager();
     private List<specialite> mesSpecial = new LinkedList<specialite>();
-     /** Creates a new instance of GestionDesJoueurs */
+    private Historique m_historique = new Historique();
+   
+
+
+
+	/** Creates a new instance of GestionDesJoueurs */
     public GestionDesJoueurs() {
     }
-    public Personnes listePersonneByCIN(){
-      lesPersonnes = new gestionPersonnes().getlistePersonneByCIN(getMonPersonne().getCin());
-        monPersonne = lesPersonnes.get(0);
-        return monPersonne;
-    }
-    public Joueur rechercheJoueurParLicence(String licence) {
-        Query query = em.createQuery("select j from Joueur j where j.licence = ?1");
-        query.setParameter(1, licence);
-        lejoueur = (Joueur) query.getResultList().get(0);
-        return lejoueur;
+
+
+    public List<Personnes> listePersonneByCIN() {
+       lesPersonnes = new gestionPersonnes().getlistePersonneByCIN(getMonPersonne().getCin());
+       monPersonne = lesPersonnes.get(0);
+       return lesPersonnes;
     }
 
+    public Joueur rechercheJoueurParLicence(String licence) {
+    	Historique hj = new gestionHistorique().rechercheLicenceCourante(licence);
+    	Date now = new Date();
+    	List<Joueur> lstJoueurs = new GestionDesJoueurs().getlistDesJoueurs();
+    	for(Joueur j : (List<Joueur>)lstJoueurs){
+    		if(j.getLsthistoriqueJoueur().contains(hj)){
+    			if (hj.getDateDebut().compareTo(now)<=0 && hj.getDateFin().compareTo(now)>=0){
+    				return j;
+    			}
+    		}
+    	}
+       return null;
+    }
+    
+
       public List<Joueur>  getlistDesJoueurs(){
-        Query query = em.createQuery("select j from Joueur j where j.etat <> 1");
-        lesJoueurs = query.getResultList();
-        return lesJoueurs;
+        return new ServiceJoueurImpl().lstJoueurs();
     }
      
 
  
     public String saveJoueurs() {
-       
         Joueur monJoueur = new Joueur();
-         //monJoueur.setLesSpecialite(lejoueur.getLesSpecialite());
-         monJoueur.setDateDebut(getLejoueur().getDateDebut());
-        //entrain.setDateFin(df);
-        monJoueur.setLeClubJoueur(lejoueur.getLeClubJoueur());
-        monJoueur.setGrade(getLejoueur().getGrade());
-         monJoueur.setLaPersonne(monPersonne);
-        monJoueur.setLicence(getLejoueur().getLicence());
-        em.getTransaction().begin();
-        em.persist(monJoueur);
-        em.getTransaction().commit();
-
+        List<Historique> lstHD = new LinkedList<Historique>();
+    	lstHD.add(m_historique);
+    	lejoueur.setLsthistoriqueJoueur(lstHD);       
+        //entrain.setDateFin(df);      
+         lejoueur.setLaPersonne(monPersonne);         
+        new ServiceJoueurImpl().saveJoueur(lejoueur);
         return "listJoueurs";
     }
 
@@ -78,28 +90,6 @@ public class GestionDesJoueurs {
 
     }
     
-    public void coucou(){
-    	System.out.println("alooooooooooooooo");
-    }
-    
-   public List<Joueur> getrecherchelstJoueurPAram(){
-       String lic = null;
-       String grd = null;
-
-       if (lejoueur.getLicence()!= null){
-            lic = lejoueur.getLicence();
-       }
-       if(lejoueur.getGrade()!=null){
-            grd = lejoueur.getGrade();
-       }
-        Query query = em.createQuery("from Joueur j ");
-       // query.setParameter(1, lic);
-        //query.setParameter(2, "Marron");
-        lesJoueurs = query.getResultList();
-    return lesJoueurs;
-   }
-   
-
 
     /**
      * @return the lejoueur
@@ -159,16 +149,6 @@ public class GestionDesJoueurs {
         this.setLesPersonnes(lesPersonnes);
     }
 
-    
-    /**
-     * @return the emf
-     */
-    public EntityManagerFactory getEmf() {
-        return emf;
-    }
-
-    
-
 
     /**
      * @return the mesSpecial
@@ -184,9 +164,14 @@ public class GestionDesJoueurs {
         this.mesSpecial = mesSpecial;
     }
 
+    
+    public Historique getM_historique() {
+		return m_historique;
+	}
 
 
-   
+	public void setM_historique(Historique m_historique) {
+		this.m_historique = m_historique;
+	}
 
-   
 }

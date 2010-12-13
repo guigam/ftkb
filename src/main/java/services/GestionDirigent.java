@@ -15,9 +15,11 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
+import services.serviceDirigent.ServiceDirigent;
+
 import modeles.Clubs;
 import modeles.Dirigents;
-import modeles.HistoriqueDirigent;
+import modeles.Historique;
 import modeles.Personnes;
 
 
@@ -26,103 +28,51 @@ import modeles.Personnes;
  * @author guiga
  */
 public class GestionDirigent {
-
-    private Dirigents leDirigent = new Dirigents();
+	private List<Personnes> lstPersonnes = new LinkedList<Personnes>();
+	private Dirigents leDirigent = new Dirigents();
     private List<Dirigents> lesDirigents = new LinkedList<Dirigents>();
-    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("gestion");
-    private EntityManager em = emf.createEntityManager();
-    private List<Personnes> lesPersonnes = new LinkedList<Personnes>();
     private Personnes laPersonnes = new Personnes();
     private Clubs monClub = new Clubs();
-    private HistoriqueDirigent m_historique = new HistoriqueDirigent();
-    static Date dateSysteme = new Date();
+    private Historique m_historique = new Historique();
+
+
+	static Date dateSysteme = new Date();
 
 
 	/** Creates a new instance of GestionDirigent */
     public GestionDirigent() {
     }
 
-
-
     public List<Personnes> listePersonneByCIN() {
-        lesPersonnes = new gestionPersonnes().getlistePersonneByCIN(getLaPersonnes().getCin());
-        
-        
-        return  lesPersonnes;
+       lstPersonnes = new gestionPersonnes().getlistePersonneByCIN(getLaPersonnes().getCin());
+       return lstPersonnes;
     }
     
-    
-
     public String saveDirigent() {
-    
-       Query qq = em.createQuery("from Dirigents d where d.laPersonne = ?1");
-       qq.setParameter(1, laPersonnes);
-       Dirigents dirig = (Dirigents) qq.getResultList().get(0);
-       if(qq.getResultList().size() < 0){
     	  //on crée un nouveau dirigent
-        leDirigent.setLaPersonne(laPersonnes);      
-        em.getTransaction().begin();
-        em.persist(leDirigent);
-        em.getTransaction().commit();
-        saveHisto(m_historique);
-        }else{
-        	 //om met a jour le dirigent         
-        	try{
-	        	new gestionHistorique().mettreAJourHistoriqueDirigent(m_historique,dirig);
-	        	new gestionHistorique().AjouterHistoriqueDirigent(m_historique,dirig);
-        	}catch (Exception e) {
-				// TODO: handle exception
-			}
-        }
-        
-
+    	List<Historique> lstHD = new LinkedList<Historique>();
+    	lstHD.add(m_historique);
+    	//leDirigent.setLeClubDirigent(monClub);
+    	leDirigent.setLst_histoDirigents(lstHD);
+        leDirigent.setLaPersonne(listePersonneByCIN().get(0));      
+        new ServiceDirigent().saveDirigent(leDirigent);
         return "listDirigents";
     }
 
+    public void miseAjourHistorique(Dirigents leDirig, Historique p_HD){
+    	new ServiceDirigent().miseAjourHistorique(leDirig, p_HD);
+    }	
+    
     public String saveDirigentEtPersonne(){
-        try{
         new gestionPersonnes().enregistrerPersonne(laPersonnes);
         saveDirigent();
-        }catch(Exception e){
-            em.getTransaction().rollback();
-        }
-       
         return "listDirigents";
-       
     }
 
-        public List<Dirigents> getlisDesDirigents() {
-        
-        Query query = em.createQuery("from Dirigents d where d.etat <> 1");
-        List<Dirigents> lst_dirigents = query.getResultList();
-//        for(Dirigents d :lst_dirigents){
-//        Dirigents dr = new Dirigents();
-//       
-//      	dr.setLaPersonne(d.getLaPersonne());
-//      	dr.setLst_histoDirigents(new gestionHistorique().licenceCourantduDirigent(d));
-//      	
-//      	lesDirigents.add(dr);
-//      	
-//      }
-      //  lesDirigents = query.getResultList(); 
-
-        return lst_dirigents;
+     public List<Dirigents> getlisDesDirigents() {
+        return new ServiceDirigent().lstdirigents();
     }
 
-
-        
-        
-        public void saveHisto(HistoriqueDirigent monHisto){
-        	try{
-        	m_historique.setM_dirigents(leDirigent);
-        	em.getTransaction().begin();	
-    		em.persist(monHisto);
-    		em.getTransaction().commit();
-        	}catch(Exception e){
-                em.getTransaction().rollback();
-            }
-    		
-    	}
     /**
      * @return the leDirigent
      */
@@ -137,21 +87,6 @@ public class GestionDirigent {
         this.leDirigent = leDirigent;
     }
 
-    
-
-    /**
-     * @return the lesPersonnes
-     */
-    public List<Personnes> getLesPersonnes() {
-        return lesPersonnes;
-    }
-
-    /**
-     * @param lesPersonnes the lesPersonnes to set
-     */
-    public void setLesPersonnes(List<Personnes> lesPersonnes) {
-        this.lesPersonnes = lesPersonnes;
-    }
 
     /**
      * @return the laPersonnes
@@ -194,16 +129,22 @@ public class GestionDirigent {
     public void setLesDirigents(List<Dirigents> lesDirigents) {
         this.lesDirigents = lesDirigents;
     }
-    public HistoriqueDirigent getm_historique() {
+ 
+
+    public List<Personnes> getLstPersonnes() {
+		return lstPersonnes;
+	}
+
+	public void setLstPersonnes(List<Personnes> lstPersonnes) {
+		this.lstPersonnes = lstPersonnes;
+	}
+	
+    public Historique getM_historique() {
 		return m_historique;
 	}
 
-
-
-	public void setm_historique(HistoriqueDirigent m_historique) {
+	public void setM_historique(Historique m_historique) {
 		this.m_historique = m_historique;
 	}
-
-
 }
 

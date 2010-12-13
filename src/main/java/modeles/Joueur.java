@@ -8,6 +8,8 @@ package modeles;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -20,6 +22,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
+import javax.persistence.Transient;
+
+import services.gestionHistorique;
 
 /**
  *
@@ -36,16 +41,7 @@ public class Joueur extends Acteurs {
     private Date dateFin;
     private String grade;
     private String categorie;
-    
-    
-    
-    public String getCategorie() {
-		return categorie;
-	}
 
-	public void setCategorie(String categorie) {
-		this.categorie = categorie;
-	}
 
 	@ManyToMany
     private List<specialite> lesSpecialite;
@@ -56,8 +52,24 @@ public class Joueur extends Acteurs {
     private List<participation> lesParticipations;
     private boolean etat;
     
+    @OneToMany(cascade=CascadeType.ALL)
+    public List<Historique> lsthistoriqueJoueur;
 
-    /**
+
+	@Transient
+    public Historique getCurrentHistorique() {
+    	Date now = new Date();
+    	if (lsthistoriqueJoueur.size() > 0) {
+    		for (Historique hj : lsthistoriqueJoueur) {
+    			if (hj.getDateDebut().compareTo(now)<=0 && hj.getDateFin().compareTo(now)>=0)
+    				return hj;
+    		}
+    	}
+    		
+    	return null;
+    }
+
+	/**
      * @return the licence
      */
     public String getLicence() {
@@ -172,8 +184,24 @@ public class Joueur extends Acteurs {
     }
 
     
-
     
+    
+    public String getCategorie() {
+		return categorie;
+	}
 
+	public void setCategorie(String categorie) {
+		this.categorie = categorie;
+	}    
+
+
+
+    public List<Historique> getLsthistoriqueJoueur() {
+		return lsthistoriqueJoueur;
+	}
+
+	public void setLsthistoriqueJoueur(List<Historique> lsthistoriqueJoueur) {
+		this.lsthistoriqueJoueur = lsthistoriqueJoueur;
+	}
     
 }

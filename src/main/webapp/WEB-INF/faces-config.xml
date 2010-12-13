@@ -168,11 +168,11 @@
     <managed-bean>
         <managed-bean-name>gestionDesJoueurs</managed-bean-name>
         <managed-bean-class>services.GestionDesJoueurs</managed-bean-class>
-        <managed-bean-scope>request</managed-bean-scope>
+        <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
     <converter>
         <converter-id>spec</converter-id>
-        <converter-class>converters.specialiteConverter</converter-class>
+        <converter-class>converters.SpecialiteConverter</converter-class>
     </converter>
     <converter>
     	<converter-id>ClubConverter</converter-id>
@@ -186,7 +186,7 @@
     <managed-bean>
         <managed-bean-name>gsDirigent</managed-bean-name>
         <managed-bean-class>services.GestionDirigent</managed-bean-class>
-        <managed-bean-scope>request</managed-bean-scope>
+        <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
     <managed-bean>
         <managed-bean-name>gsCompetition</managed-bean-name>

@@ -27,18 +27,7 @@ public  class Entraineurs extends Acteurs {
     private String licence;
     private String grade;
     private String degre;
-    @OneToMany(mappedBy="m_entraineurs")
-    private List<HistoriqueEntraineurs> lst_histoEntraineur;
-	public List<HistoriqueEntraineurs> getLst_histoEntraineur() {
-		return lst_histoEntraineur;
-	}
 
-
-
-	public void setLst_histoEntraineur(
-			List<HistoriqueEntraineurs> lst_histoEntraineur) {
-		this.lst_histoEntraineur = lst_histoEntraineur;
-	}
 
 
 

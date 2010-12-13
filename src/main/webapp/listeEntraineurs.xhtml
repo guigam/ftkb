@@ -23,7 +23,7 @@
                     <rich:spacer height="10px"/>
 
 
-                    <rich:dataTable value="#{gestEntrain.listDesEntraineurs}" var="e" width="100%">
+                    <rich:dataTable value="#{gestEntrain.lesEntraineurs}" var="e" width="100%">
                         <rich:column width="20%" filterBy="#{e.laPersonne.nomPrenom}" filterEvent="onkeyup">
                             <f:facet name="header">
                                 <h:outputText value="Entraineur"/>

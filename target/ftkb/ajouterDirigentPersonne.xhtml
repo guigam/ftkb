@@ -34,10 +34,10 @@
                      <center> <rich:panel style="width: 50%">
                       <h:panelGrid  columns="2"  cellspacing="7">
         							  <h:outputText value="Club"/>
-                              		  <rich:comboBox value="#{gsDirigent.leDirigent.leClubDirigent}">
-							          	<f:selectItems value="#{gestionClubs.listeDesClubsItem}"/>
-							          </rich:comboBox>     
-                                      <h:outputText value="Date Debut"/>
+        							   <rich:comboBox value="#{gsDirigent.leDirigent.leClubDirigent}" converter="ClubConverter" defaultLabel="Choisissez un CLub" >         
+							          	<f:selectItems var="club" itemLabel="#{club.nomClub}" value="#{gestionClubs.listeDesClubsItem}"  />
+							           </rich:comboBox>                                		  
+                                      <h:outputText value="Date"/>
                                       <rich:calendar value="#{gsDirigent.m_historique.dateDebut}" id="date" required="true" requiredMessage="Date  #{msgValidator.msgObligatoire}"/>
                                       <h:outputText value="Numero Licence"/>
                                       <h:inputText value="#{gsDirigent.m_historique.licence}" required="true" id="lic" requiredMessage="Licence  #{msgValidator.msgObligatoire}"/>

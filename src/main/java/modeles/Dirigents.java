@@ -8,6 +8,7 @@ package modeles;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -28,15 +29,17 @@ public  class Dirigents extends Acteurs {
     @JoinColumn(name = "club_id")
     private Clubs leClubDirigent;
     private boolean etat;
-    @OneToMany(mappedBy="m_dirigents")
-    private List<HistoriqueDirigent> lst_histoDirigents;
-    
-    @Transient
-    public HistoriqueDirigent getCurrentHistorique() {
+    @OneToMany(cascade=CascadeType.ALL)
+    private List<Historique> lst_histoDirigents;
+
+
+	@Transient
+    public Historique getCurrentHistorique() {
     	Date now = new Date();
+    	System.out.println(lst_histoDirigents.size());
     	if (lst_histoDirigents.size() > 0) {
-    		for (HistoriqueDirigent hd : lst_histoDirigents) {
-    			if (hd.getDateDebut().compareTo(now)<0 && hd.getDateFin().compareTo(now)>0)
+    		for (Historique hd : lst_histoDirigents) {
+    			if (hd.getDateDebut().compareTo(now)<=0 && hd.getDateFin().compareTo(now)>=0)
     				return hd;
     		}
     	}
@@ -44,9 +47,6 @@ public  class Dirigents extends Acteurs {
     	return null;
     }
     
-    public void setCurrentHistorique(HistoriqueDirigent h) {
-    	
-    }
 
 
 	@Override
@@ -56,17 +56,6 @@ public  class Dirigents extends Acteurs {
         return hash;
     }
 
-    
-
-    public List<HistoriqueDirigent> getLst_histoDirigents() {
-		return lst_histoDirigents;
-	}
-
-
-
-	public void setLst_histoDirigents(List<HistoriqueDirigent> lst_histoDirigents) {
-		this.lst_histoDirigents = lst_histoDirigents;
-	}
 
 
 
@@ -104,4 +93,12 @@ public  class Dirigents extends Acteurs {
         this.etat = etat;
     }
 
+    
+    public List<Historique> getLst_histoDirigents() {
+		return lst_histoDirigents;
+	}
+
+	public void setLst_histoDirigents(List<Historique> lst_histoDirigents) {
+		this.lst_histoDirigents = lst_histoDirigents;
+	}
 }

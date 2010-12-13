@@ -11,8 +11,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+
+import services.ServiceEntraineurs.ServiceEntraineurImpl;
 import modeles.Clubs;
 import modeles.Entraineurs;
+import modeles.Historique;
 import modeles.Personnes;
 
 /**
@@ -23,38 +26,36 @@ import modeles.Personnes;
 public class GestionDesEntraineurs {
     private Entraineurs lentraineur = new Entraineurs();
     private List<Entraineurs> lesEntraineurs = new LinkedList<Entraineurs>();
-    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("gestion");
-    private EntityManager em = emf.createEntityManager();
     private List<Personnes> lesPersonnes = new LinkedList<Personnes>();
     private Personnes laPersonnes = new Personnes();
     private Clubs monClub = new Clubs();
-   // private static final Date df = new Date("01-01-3000");
+    private Historique he = new Historique();
+
+
+
+
+			// private static final Date df = new Date("01-01-3000");
             /** Creates a new instance of GestionDesEntraineurs */
     public GestionDesEntraineurs() {
     }
 
   
-    public Personnes listePersonneByCIN(){
-        lesPersonnes = new gestionPersonnes().getlistePersonneByCIN(getLaPersonnes().getCin());
-        laPersonnes = getLesPersonnes().get(0);
 
-        return laPersonnes;
+    public List<Personnes> listePersonneByCIN() {
+       lesPersonnes = new gestionPersonnes().getlistePersonneByCIN(getLaPersonnes().getCin());
+       return lesPersonnes;
     }
 
     public String saveEntraineur(){
-        Personnes pers = new Personnes();
-        Entraineurs entrain = new Entraineurs();
        
+        Entraineurs entrain = new Entraineurs();
         //entrain.setDateDeb(getLentraineur().getDateDeb());
         //entrain.setDateFin(df);
-        //entrain.setLeClubs(monClub);
+        entrain.setLeClubEntraineur(monClub);
         entrain.setGrade(getLentraineur().getGrade());
         entrain.setLaPersonne(laPersonnes);
         entrain.setLicence(getLentraineur().getLicence());
-        getEm().getTransaction().begin();
-        getEm().persist(entrain);
-        getEm().getTransaction().commit();
-
+        new ServiceEntraineurImpl().saveEntraineur(entrain);
         return "listEntrain";
     }
 
@@ -64,13 +65,6 @@ public class GestionDesEntraineurs {
         saveEntraineur();
         return "listEntrain";
 
-    }
-
-
-    public List<Entraineurs>  getlistDesEntraineurs(){
-        Query query = getEm().createQuery("from Entraineurs e where e.etat <> 1");
-        lesEntraineurs = query.getResultList();
-        return lesEntraineurs;
     }
 
 
@@ -99,7 +93,7 @@ public class GestionDesEntraineurs {
      * @return the lesEntraineurs
      */
     public List<Entraineurs> getLesEntraineurs() {
-        return lesEntraineurs;
+        return new ServiceEntraineurImpl().lstEntraineur();
     }
 
     /**
@@ -109,37 +103,7 @@ public class GestionDesEntraineurs {
         this.setLesEntraineurs(lesEntraineurs);
     }
 
-    
 
-    /**
-     * @return the emf
-     */
-    public EntityManagerFactory getEmf() {
-        return emf;
-    }
-
-    /**
-     * @param emf the emf to set
-     */
-    public void setEmf(EntityManagerFactory emf) {
-        this.emf = emf;
-    }
-
-    /**
-     * @return the em
-     */
-    public EntityManager getEm() {
-        return em;
-    }
-
-    /**
-     * @param em the em to set
-     */
-    public void setEm(EntityManager em) {
-        this.em = em;
-    }
-
-    
 
     /**
      * @param lesPersonnes the lesPersonnes to set

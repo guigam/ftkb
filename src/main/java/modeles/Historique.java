@@ -16,7 +16,6 @@ import javax.persistence.Temporal;
 import java.util.Date;
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Historique implements Serializable {
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -30,7 +29,6 @@ public class Historique implements Serializable {
 	
 	
 	
-
 
 	public Historique(){}
 	

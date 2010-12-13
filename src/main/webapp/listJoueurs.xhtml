@@ -27,23 +27,23 @@
                     <rich:panel>
                         <h:panelGrid columns="2">
                         <h:outputText value="Club"/>
-                        <rich:comboBox >
-                            <f:selectItems value="#{gestionClubs.listeDesClubsItem}"/>
+                        <rich:comboBox converter="ClubConverter">
+                            <f:selectItems value="#{gestionClubs.lstClubsItem}"/>
                         </rich:comboBox>
                         <h:outputText value="Grade" />
-                        <rich:comboBox >
+                        <rich:comboBox  value="#{gestionDesJoueurs.lejoueur.categorie}">
                             <f:selectItem itemValue="Noir"/>
                             <f:selectItem itemValue="Marron"/>
                             <f:selectItem itemValue="Blanc"/>
                             <f:selectItem itemValue="Rouge"/>
                         </rich:comboBox>
                         <h:outputText value="Specialité"/>
-<!--                        <rich:comboBox >
+                        <rich:comboBox converter="spec">
                             <f:selectItems value="#{spec.listSpecialiteItem}"/>
-                        </rich:comboBox>-->
+                        </rich:comboBox>
                         <h:outputText value="Licence"/>
                         <h:inputText value="#{gestionDesJoueurs.lejoueur.licence}"/>
-                        <a4j:commandButton value="recherche" action="#{gestEntrainAdj.monClub}" reRender="tab"/>
+                        <a4j:commandButton value="recherche" action="#{ges.monClub}" reRender="tab"/>
                         <h:commandButton action="#{gestionDesJoueurs.recherchelstJoueurPAram}" value="test"/>
                         </h:panelGrid>
                     </rich:panel>
@@ -72,8 +72,10 @@
                                     </f:facet>
                                     <h:panelGrid columns="2">
                                     <h:outputText value="Numero de Licence: " styleClass="title4"/>
-                                    <h:outputText value="#{e.licence}" styleClass="title5"/>
-                                    <h:outputText value="Grade: " styleClass="title4"/>
+                                    <h:outputText value="#{e.currentHistorique.licence}" styleClass="title5"/>
+                                    <h:outputText value="Catégorie " styleClass="title4"/>
+                                    <h:outputText value="#{e.categorie}"  styleClass="title5"/>
+                                     <h:outputText value="Grade " styleClass="title4"/>
                                     <h:outputText value="#{e.grade}"  styleClass="title5"/>
                                     <h:outputText value="Club: " styleClass="title4"/>
                                     <h:outputText value="#{e.leClubJoueur.nomClub}" styleClass="title5" />

@@ -5,6 +5,7 @@
 
 package services;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -26,7 +27,7 @@ import org.richfaces.component.UIDataTable;
  */
 public class GestionCompetition {
     private Joueur leJoueur = new Joueur();
-    private participation m_participation = new participation();
+	private participation m_participation = new participation();
     private Tournois m_Tournoi = new Tournois();
     private List<Tournois> l_tournois = new LinkedList<Tournois>();
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("gestion");
@@ -50,7 +51,9 @@ public class GestionCompetition {
         return "detailTournois";
     }
 
-    public Joueur affectationDuJoueur(){
+
+    public Joueur affectationDuJoueur(){    	
+    	System.out.println("affect");
         leJoueur = new GestionDesJoueurs().rechercheJoueurParLicence(leJoueur.getLicence());
        return leJoueur;
     }
@@ -75,6 +78,7 @@ public class GestionCompetition {
         
        List<specialite> lesSpec=  em.createQuery("from specialite s ").getResultList();        
        List<Poid> lespoids = (List<Poid>) em.createQuery("select p from Poid p").getResultList();
+    
         for (specialite s : lesSpec){
                   for(Poid p : lespoids){
                       List<participation> lesparticip = new LinkedList<participation>();
@@ -87,33 +91,30 @@ public class GestionCompetition {
                       query.setParameter(3, p.getMaxpoid());
                       query.setParameter(4, p.getMinPoid());
                       lesparticip = query.getResultList();
-                      for (int i = 0;i<lesparticip.size();i++){
-                       
+                     participation p1 = null;
+                     participation p2 = null;
+                    	   for(Iterator<participation> particip = lesparticip.iterator(); particip.hasNext();){
                             m_arbre = new Arbre();
-                            participation p1 = lesparticip.get(i);
-                            participation p2 = lesparticip.get(i+1);
-                            j1 = p1.getLeJoueur();
-                            j2 = p2.getLeJoueur();
-                            m_arbre.setJoueur1(j1);
-                            m_arbre.setJoueur2(j2);
-                            m_arbre.setPoidMin(p.getMinPoid());
-                            m_arbre.setPoindMax(p.getMaxpoid());
-                            m_arbre.setSpec(s.getNomSpecialite());
-                            em.getTransaction().begin();
-                            em.persist(m_arbre);
-                            em.getTransaction().commit();
-                            if(i+2 > lesparticip.size()){
-                                participation p3 = lesparticip.get(i+1);
-                                j1 = p3.getLeJoueur();
-                                m_arbre.setJoueur1(j1);
-                                m_arbre.setPoidMin(p.getMinPoid());
-                                m_arbre.setPoindMax(p.getMaxpoid());
-                                m_arbre.setSpec(s.getNomSpecialite());
-                                em.getTransaction().begin();
-                                em.persist(m_arbre);
-                                em.getTransaction().commit();
+                            if(particip.hasNext()){
+                            if(p1==null){
+                            	p1 = particip.next();
+                            }else {
+                            	p2 = particip.next();
+                            	 m_arbre.setJoueur1(p1.getLeJoueur());
+                                 m_arbre.setJoueur2(p2.getLeJoueur());
+                                 m_arbre.setPoidMin(p.getMinPoid());
+                                 m_arbre.setPoindMax(p.getMaxpoid());
+                                 m_arbre.setSpec(s.getNomSpecialite());
+                                 em.getTransaction().begin();
+                                 em.persist(m_arbre);
+                                 em.getTransaction().commit();
                             }
-                            i++;
+                            }else{
+                            	
+                            	
+                            }
+                            
+                     
                        
                       }
 
@@ -196,5 +197,4 @@ public class GestionCompetition {
         this.m_participation = m_participation;
     }
 
-  
 }
