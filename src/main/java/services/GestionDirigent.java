@@ -5,22 +5,16 @@
 
 package services;
 
-import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
-
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.Query;
-
-import services.serviceDirigent.ServiceDirigent;
 
 import modeles.Clubs;
 import modeles.Dirigents;
 import modeles.Historique;
 import modeles.Personnes;
+import services.serviceDirigent.ServiceDirigent;
 
 
 /**
@@ -51,8 +45,12 @@ public class GestionDirigent {
     public String saveDirigent() {
     	  //on crée un nouveau dirigent
     	List<Historique> lstHD = new LinkedList<Historique>();
+    	Calendar c = Calendar.getInstance();
+    	c.set(3000, 11, 30);
+    	m_historique.setDateFin(c.getTime());
     	lstHD.add(m_historique);
     	//leDirigent.setLeClubDirigent(monClub);
+    	
     	leDirigent.setLst_histoDirigents(lstHD);
         leDirigent.setLaPersonne(listePersonneByCIN().get(0));      
         new ServiceDirigent().saveDirigent(leDirigent);

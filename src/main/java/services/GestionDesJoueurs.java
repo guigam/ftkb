@@ -77,6 +77,7 @@ public class GestionDesJoueurs {
     	lstHD.add(m_historique);
     	lejoueur.setLsthistoriqueJoueur(lstHD);       
         //entrain.setDateFin(df);      
+//    	lejoueur.setLesSpecialite(mesSpecial);
          lejoueur.setLaPersonne(monPersonne);         
         new ServiceJoueurImpl().saveJoueur(lejoueur);
         return "listJoueurs";

@@ -5,26 +5,19 @@
 
 package modeles;
 
-import java.io.Serializable;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.Transient;
-
-import services.gestionHistorique;
 
 /**
  *
@@ -44,16 +37,18 @@ public class Joueur extends Acteurs {
 
 
 	@ManyToMany
-    private List<specialite> lesSpecialite;
-    @ManyToOne(fetch = FetchType.LAZY)
+    private List<specialite> lesSpecialite = new LinkedList<specialite>();
+  
+
+	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "club_id")
     private Clubs leClubJoueur;
     @OneToMany(mappedBy= "leJoueur")
-    private List<participation> lesParticipations;
+    private List<participation> lesParticipations = new LinkedList<participation>();
     private boolean etat;
     
     @OneToMany(cascade=CascadeType.ALL)
-    public List<Historique> lsthistoriqueJoueur;
+    public List<Historique> lsthistoriqueJoueur = new LinkedList<Historique>();
 
 
 	@Transient
@@ -113,19 +108,6 @@ public class Joueur extends Acteurs {
         this.leClubJoueur = leClubJoueur;
     }
 
-    /**
-     * @return the lesSpecialite
-     */
-    public List<specialite> getLesSpecialite() {
-        return lesSpecialite;
-    }
-
-    /**
-     * @param lesSpecialite the lesSpecialite to set
-     */
-    public void setLesSpecialite(List<specialite> lesSpecialite) {
-        this.setLesSpecialite(lesSpecialite);
-    }
 
     /**
      * @return the lesParticipations
@@ -203,5 +185,12 @@ public class Joueur extends Acteurs {
 	public void setLsthistoriqueJoueur(List<Historique> lsthistoriqueJoueur) {
 		this.lsthistoriqueJoueur = lsthistoriqueJoueur;
 	}
-    
+	
+	public List<specialite> getLesSpecialite() {
+			return lesSpecialite;
+		}
+
+		public void setLesSpecialite(List<specialite> lesSpecialite) {
+			this.lesSpecialite = lesSpecialite;
+		}
 }

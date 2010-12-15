@@ -139,7 +139,7 @@
                      <h:outputText value="Specialité" style="font-size:14;font-weight:bold;" />
                      <rich:separator height="5"/>
                      <rich:spacer height="10px"/>
-                     <rich:pickList converter="spec">
+                     <rich:pickList converter="converterSpec" value="#{gestionDesJoueurs.lejoueur.lesSpecialite}">
                          <f:selectItems value="#{spec.listSpecialiteItem}"/>
                      </rich:pickList>
                      <a  onclick="#{rich:component('panel')}.hide()">fermer</a>
