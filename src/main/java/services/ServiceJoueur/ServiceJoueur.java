@@ -12,4 +12,6 @@ public interface ServiceJoueur {
 	
 	public Joueur rechercheJoueurParLicence(String licence);
 	
+	public List<Joueur> ListeDesJoueurActifs();
+	
 }

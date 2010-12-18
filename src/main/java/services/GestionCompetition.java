@@ -8,6 +8,9 @@ package services;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+
+import javax.faces.context.FacesContext;
+import javax.faces.model.SelectItem;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -52,11 +55,6 @@ public class GestionCompetition {
     }
 
 
-    public Joueur affectationDuJoueur(){    	
-    	System.out.println("affect");
-        leJoueur = new GestionDesJoueurs().rechercheJoueurParLicence(leJoueur.getLicence());
-       return leJoueur;
-    }
     public String saveJoueurAffectation(){
         m_participation.setLeJoueur(leJoueur);
         m_participation.setLeTournois(m_Tournoi);
@@ -74,6 +72,15 @@ public class GestionCompetition {
         return "listTournois";
     }
 
+    public List<SelectItem> getspecialiteduJoueur(){
+    	return new GestionSpecialite().lsSpecialiteduJoueur(leJoueur);
+    }
+    
+    public void joueurChoisit(){
+    	leJoueur = (Joueur) dataTable.getRowData();
+    	
+    }
+    
     public String genererArbre(){ 
         
        List<specialite> lesSpec=  em.createQuery("from specialite s ").getResultList();        

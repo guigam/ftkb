@@ -27,11 +27,7 @@ import javax.persistence.Transient;
 
 
 public class Joueur extends Acteurs {
-    private String licence;
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Date dateDebut;
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Date dateFin;
+ 
     private String grade;
     private String categorie;
 
@@ -64,19 +60,7 @@ public class Joueur extends Acteurs {
     	return null;
     }
 
-	/**
-     * @return the licence
-     */
-    public String getLicence() {
-        return licence;
-    }
 
-    /**
-     * @param licence the licence to set
-     */
-    public void setLicence(String licence) {
-        this.licence = licence;
-    }
 
     /**
      * @return the grade
@@ -123,33 +107,7 @@ public class Joueur extends Acteurs {
         this.lesParticipations = lesParticipations;
     }
 
-    /**
-     * @return the dateDebut
-     */
-    public Date getDateDebut() {
-        return dateDebut;
-    }
 
-    /**
-     * @param dateDebut the dateDebut to set
-     */
-    public void setDateDebut(Date dateDebut) {
-        this.dateDebut = dateDebut;
-    }
-
-    /**
-     * @return the dateFin
-     */
-    public Date getDateFin() {
-        return dateFin;
-    }
-
-    /**
-     * @param dateFin the dateFin to set
-     */
-    public void setDateFin(Date dateFin) {
-        this.dateFin = dateFin;
-    }
 
     /**
      * @return the etat

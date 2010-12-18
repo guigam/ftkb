@@ -13,6 +13,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+
+import modeles.Joueur;
 import modeles.specialite;
 
 /**
@@ -41,7 +43,13 @@ public class GestionSpecialite {
 
         }
       
-        
+     public List<SelectItem> lsSpecialiteduJoueur(Joueur joueur){
+     	List<SelectItem> listSpecialite = new LinkedList<SelectItem>(); 
+     	for(specialite s : joueur.getLesSpecialite()){
+     		listSpecialite.add(new SelectItem(s, s.getNomSpecialite()));
+     	}
+     	return listSpecialite;
+     }
 
     public Object getspecFromID(Integer valueOf) {
         throw new UnsupportedOperationException("Not yet implemented");

@@ -1,5 +1,7 @@
 package services.ServiceJoueur;
 
+import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -7,6 +9,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
+import modeles.Historique;
 import modeles.Joueur;
 
 public class ServiceJoueurImpl implements ServiceJoueur {
@@ -36,6 +39,22 @@ public class ServiceJoueurImpl implements ServiceJoueur {
 	public Joueur rechercheJoueurParLicence(String licence) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public List<Joueur> ListeDesJoueurActifs() {
+		Date now = new Date();
+		Query query = em.createQuery("from Joueur j where j.etat = 0  ");
+		List<Joueur> lstJuoeur = new LinkedList<Joueur>();
+		for(Joueur j : (List<Joueur>)query.getResultList()){
+			for(Historique historique : j.getLsthistoriqueJoueur()){
+				if (historique.getDateDebut().compareTo(now)<=0 && historique.getDateFin().compareTo(now)>=0){
+					lstJuoeur.add(j);
+				}
+			}
+			
+		}
+		return lstJuoeur;
 	}
 
 //	@Override

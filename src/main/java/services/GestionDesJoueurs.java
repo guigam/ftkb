@@ -8,6 +8,8 @@ package services;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+
+import javax.faces.model.SelectItem;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -43,7 +45,12 @@ public class GestionDesJoueurs {
     public GestionDesJoueurs() {
     }
 
-
+    public List<Joueur> getlstJoueurActifs(){
+    	return new ServiceJoueurImpl().ListeDesJoueurActifs();
+    }
+    
+ 
+    
     public List<Personnes> listePersonneByCIN() {
        lesPersonnes = new gestionPersonnes().getlistePersonneByCIN(getMonPersonne().getCin());
        monPersonne = lesPersonnes.get(0);
@@ -55,6 +62,7 @@ public class GestionDesJoueurs {
     	Date now = new Date();
     	List<Joueur> lstJoueurs = new GestionDesJoueurs().getlistDesJoueurs();
     	for(Joueur j : (List<Joueur>)lstJoueurs){
+    		System.out.println(j.lsthistoriqueJoueur);
     		if(j.getLsthistoriqueJoueur().contains(hj)){
     			if (hj.getDateDebut().compareTo(now)<=0 && hj.getDateFin().compareTo(now)>=0){
     				return j;
