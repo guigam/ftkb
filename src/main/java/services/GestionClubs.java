@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import javax.faces.model.SelectItem;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -52,20 +53,13 @@ public class GestionClubs {
     public Object getClubFromID(Integer valueOf) {
         throw new UnsupportedOperationException("Not yet implemented");
     }
-
     
-    /**
-     * @return the leClub
-     */
-    public Clubs getLeClub() {
-        return leClub;
+    public List<Clubs> getlistedesClub(){
+    	return serviceDuClub.getlistedesClubs();
     }
-
-    /**
-     * @param leClub the leClub to set
-     */
-    public void setLeClub(Clubs leClub) {
-        this.leClub = leClub;
+    
+    public List<SelectItem> listedesClubItem(){
+    	return serviceDuClub.listeDesClubsItem();
     }
 
     public List<SelectItem> getLstClubsItem() {
