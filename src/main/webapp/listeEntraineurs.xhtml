@@ -36,7 +36,9 @@
                             </f:facet>
                             <h:panelGrid columns="2">
                             <h:outputText value="Numero de Licence: " styleClass="title4"/>
-                            <h:outputText value="#{e.licence}" styleClass="title5"/>
+                            <h:outputText value="#{e.currentHistorique.licence}" styleClass="title5"/>
+                            <h:outputText value="Grade: " styleClass="title4"/>
+                            <h:outputText value="#{e.grade}"  styleClass="title5"/>
                             <h:outputText value="Grade: " styleClass="title4"/>
                             <h:outputText value="#{e.grade}"  styleClass="title5"/>
                             <h:outputText value="Club: " styleClass="title4"/>

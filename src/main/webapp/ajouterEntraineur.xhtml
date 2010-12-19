@@ -48,14 +48,21 @@
               <f:selectItem itemValue="Blanc"/>
               <f:selectItem itemValue="Rouge"/>
           </rich:comboBox>
+          <h:outputText value="Degré"/>
+           <rich:comboBox value="#{gestEntrain.lentraineur.degre}" required="true" requiredMessage="Degré #{msgValidator.msgObligatoire}">
+              
+              <f:selectItem itemValue="International"/>
+              <f:selectItem itemValue="National"/>
+          </rich:comboBox>
           <h:outputText value="Date Debut"/>
           <rich:calendar value="#{gestEntrain.he.dateDebut}" required="true" requiredMessage="Date #{msgValidator.msgObligatoire}"/>
           <h:outputText value="Numero Licence"/>
-          <h:inputText value="#{gestEntrain.lentraineur.licence}" required="true" requiredMessage="Licence #{msgValidator.msgObligatoire}"/>
+          <h:inputText value="#{gestEntrain.he.licence}" required="true" requiredMessage="Licence #{msgValidator.msgObligatoire}"/>
           <h:outputText value="C.I.N"/>
           <h:inputText value="#{gestEntrain.laPersonnes.cin}"/>
           </h:panelGrid>
                 <a4j:commandButton value ="Reccherche" action="#{gestEntrain.listePersonneByCIN}" reRender="tt" style="margin-bottom: 0px" />
+                 <h:commandButton value="valider" action="#{gestEntrain.saveEntraineur}"/>
           </h:panelGrid>
           
               <a4j:outputPanel id="tt">
@@ -96,7 +103,7 @@
 
                   </rich:dataTable>
                             <rich:spacer height="20px"/>
-                            <h:commandButton value="valider" action="#{gestEntrain.saveEntraineur}"/>
+                           
                  </a4j:outputPanel>
                                      
                   

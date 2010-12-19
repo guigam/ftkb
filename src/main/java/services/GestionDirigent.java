@@ -15,7 +15,7 @@ import modeles.Dirigents;
 import modeles.Historique;
 import modeles.Personnes;
 import services.serviceDirigent.ServiceDirigent;
-
+import service.*;
 
 /**
  *

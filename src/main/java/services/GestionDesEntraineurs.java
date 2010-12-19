@@ -5,6 +5,7 @@
 
 package services;
 
+import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -33,7 +34,6 @@ public class GestionDesEntraineurs {
 
 
 
-
 			// private static final Date df = new Date("01-01-3000");
             /** Creates a new instance of GestionDesEntraineurs */
     public GestionDesEntraineurs() {
@@ -43,18 +43,26 @@ public class GestionDesEntraineurs {
 
     public List<Personnes> listePersonneByCIN() {
        lesPersonnes = new gestionPersonnes().getlistePersonneByCIN(getLaPersonnes().getCin());
+       laPersonnes = lesPersonnes.get(0);
        return lesPersonnes;
     }
 
+    public void test(){
+    	System.out.println("test");
+    	
+    }
+    
     public String saveEntraineur(){
-       
         Entraineurs entrain = new Entraineurs();
-        //entrain.setDateDeb(getLentraineur().getDateDeb());
-        //entrain.setDateFin(df);
+        Calendar c = Calendar.getInstance();
+    	c.set(3000, 11, 30);   
+    	he.setDateFin(c.getTime());
+    	 List<Historique> lstHD = new LinkedList<Historique>();
+      	lstHD.add(he);
         entrain.setLeClubEntraineur(monClub);
         entrain.setGrade(getLentraineur().getGrade());
+        entrain.setLsthistoriqueEntraineur(lstHD);
         entrain.setLaPersonne(laPersonnes);
-        entrain.setLicence(getLentraineur().getLicence());
         new ServiceEntraineurImpl().saveEntraineur(entrain);
         return "listEntrain";
     }
@@ -154,9 +162,17 @@ public class GestionDesEntraineurs {
         this.monClub = monClub;
     }
 
-    
 
-    
+	public Historique getHe() {
+		return he;
+	}
+
+
+
+	public void setHe(Historique he) {
+	this.he = he;
+	}
+
 
    
 

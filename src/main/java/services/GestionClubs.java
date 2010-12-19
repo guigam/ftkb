@@ -15,6 +15,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
+import service.serviceClubImpl;
 import services.serviceClub.ServiceClub;
 import services.serviceClub.ServiceClubImpl;
 import modeles.Clubs;
@@ -55,11 +56,11 @@ public class GestionClubs {
     }
     
     public List<Clubs> getlistedesClub(){
-    	return serviceDuClub.getlistedesClubs();
+    	return new serviceClubImpl().getlistedesClubs();
     }
     
     public List<SelectItem> listedesClubItem(){
-    	return serviceDuClub.listeDesClubsItem();
+    	return new serviceClubImpl().listeDesClubsItem();
     }
 
     public List<SelectItem> getLstClubsItem() {

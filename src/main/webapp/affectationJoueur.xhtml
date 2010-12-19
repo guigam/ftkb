@@ -20,7 +20,7 @@
                     <rich:separator width="100%" height="7px"/>
                     <rich:spacer height="10px"/>
                      <h:outputText value="Liste des joueurs actifs" styleClass="title2"/>   
-                    <rich:dataTable value="#{gestionDesJoueurs.lstJoueurActifs}" var="item" width="100%" binding="#{gsCompetition.dataTable}">
+                    <rich:dataTable value="#{gestionDesJoueurs.lstJoueurActifs}" var="item" width="100%" binding="#{gsCompetition.dataTable}" >
                     	<rich:column>
                     		<f:facet name="header" >
                     			<h:outputText value="Nom Joueur"/>
@@ -78,10 +78,13 @@
 					 <h:outputText value="poid" />
 					 <h:inputText  value="#{gsCompetition.m_participation.poidJoueur}"/>
 			 </h:panelGrid>
+			 
 		 </a4j:outputPanel>
 		 <rich:spacer width="30%"/>
 		 <rich:panel header="Liste des joueurs à participer " style="width:40%">
 		 </rich:panel>
+		 
+		 <h:commandButton  value="Valider"  action="#{gsCompetition.saveJoueurAffectation}"/>
  </h:panelGrid>                    
                     </h:form>
                 </rich:panel>

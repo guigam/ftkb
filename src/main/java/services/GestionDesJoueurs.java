@@ -5,24 +5,16 @@
 
 package services;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
-import javax.faces.model.SelectItem;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.Query;
-
-import services.ServiceJoueur.ServiceJoueurImpl;
-
-import ServicePersonne.ServicePersonneImpl;
-import modeles.Entraineurs;
 import modeles.Historique;
 import modeles.Joueur;
 import modeles.Personnes;
 import modeles.specialite;
+import services.ServiceJoueur.*;
 
 
 
@@ -49,8 +41,7 @@ public class GestionDesJoueurs {
     	return new ServiceJoueurImpl().ListeDesJoueurActifs();
     }
     
- 
-    
+
     public List<Personnes> listePersonneByCIN() {
        lesPersonnes = new gestionPersonnes().getlistePersonneByCIN(getMonPersonne().getCin());
        monPersonne = lesPersonnes.get(0);
@@ -77,16 +68,16 @@ public class GestionDesJoueurs {
         return new ServiceJoueurImpl().lstJoueurs();
     }
      
-
  
     public String saveJoueurs() {
+    	Calendar c = Calendar.getInstance();
+    	c.set(3000, 11, 30);   
+    	m_historique.setDateFin(c.getTime());
         Joueur monJoueur = new Joueur();
         List<Historique> lstHD = new LinkedList<Historique>();
     	lstHD.add(m_historique);
     	lejoueur.setLsthistoriqueJoueur(lstHD);       
-        //entrain.setDateFin(df);      
-//    	lejoueur.setLesSpecialite(mesSpecial);
-         lejoueur.setLaPersonne(monPersonne);         
+        lejoueur.setLaPersonne(monPersonne);         
         new ServiceJoueurImpl().saveJoueur(lejoueur);
         return "listJoueurs";
     }

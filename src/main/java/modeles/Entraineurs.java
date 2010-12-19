@@ -6,15 +6,19 @@
 package modeles;
 
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
+import javax.persistence.Transient;
 
 /**
  *
@@ -24,22 +28,27 @@ import javax.persistence.Temporal;
 
 public  class Entraineurs extends Acteurs {
  
-    private String licence;
+  
     private String grade;
     private String degre;
+    @OneToMany(cascade=CascadeType.ALL)
+	private List<Historique> lsthistoriqueEntraineur = new LinkedList<Historique>();
 
 
+	@Transient
+    public Historique getCurrentHistorique() {
+    	Date now = new Date();
+    	if (getLsthistoriqueEntraineur().size() > 0) {
+    		for (Historique hj : getLsthistoriqueEntraineur()) {
+    			if (hj.getDateDebut().compareTo(now)<=0 && hj.getDateFin().compareTo(now)>=0)
+    				return hj;
+    		}
+    	}
+    		
+    	return null;
+    }
 
 
-	public String getDegre() {
-		return degre;
-	}
-
-
-
-	public void setDegre(String degre) {
-		this.degre = degre;
-	}
 
 	@ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="club_id")
@@ -61,22 +70,14 @@ public  class Entraineurs extends Acteurs {
         return "modeles.NewEntity[id=" + getId() + "]";
     }
 
-   
-    /**
-     * @return the licence
-     */
-    public String getLicence() {
-        return licence;
-    }
 
-    /**
-     * @param licence the licence to set
-     */
-    public void setLicence(String licence) {
-        this.licence = licence;
-    }
+	public String getDegre() {
+		return degre;
+	}
 
-    
+	public void setDegre(String degre) {
+		this.degre = degre;
+	}
 
     /**
      * @return the grade
@@ -121,6 +122,20 @@ public  class Entraineurs extends Acteurs {
     public void setEtat(boolean etat) {
         this.etat = etat;
     }
+
+
+
+	public void setLsthistoriqueEntraineur(List<Historique> lsthistoriqueEntraineur) {
+		this.lsthistoriqueEntraineur = lsthistoriqueEntraineur;
+	}
+
+
+
+	public List<Historique> getLsthistoriqueEntraineur() {
+		return lsthistoriqueEntraineur;
+	}
+
+
 
 
 }

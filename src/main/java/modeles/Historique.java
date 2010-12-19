@@ -23,7 +23,6 @@ public class Historique implements Serializable {
 	@Temporal(javax.persistence.TemporalType.DATE)
 	private Date dateDebut;
 	@Temporal(javax.persistence.TemporalType.DATE)
-	@Column(name="dateFin")
 	private Date dateFin;
 	private String licence;
 	
