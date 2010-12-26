@@ -10,6 +10,8 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.faces.context.FacesContext;
+
 import modeles.Clubs;
 import modeles.Dirigents;
 import modeles.Historique;
@@ -28,19 +30,19 @@ public class GestionDirigent {
     private Personnes laPersonnes = new Personnes();
     private Clubs monClub = new Clubs();
     private Historique m_historique = new Historique();
-
-
 	static Date dateSysteme = new Date();
-
+	
+	
+	gestionPersonnes gspersonne = (gestionPersonnes) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("gestionpersonne");
 
 	/** Creates a new instance of GestionDirigent */
     public GestionDirigent() {
     }
 
-    public List<Personnes> listePersonneByCIN() {
-       lstPersonnes = new gestionPersonnes().getlistePersonneByCIN(getLaPersonnes().getCin());
-       return lstPersonnes;
-    }
+//    public List<Personnes> listePersonneByCIN() {
+//       lstPersonnes = new gestionPersonnes().getlistePersonneByCIN(getLaPersonnes().getCin());
+//       return lstPersonnes;
+//    }
     
     public String saveDirigent() {
     	  //on crée un nouveau dirigent
@@ -49,10 +51,8 @@ public class GestionDirigent {
     	c.set(3000, 11, 30);
     	m_historique.setDateFin(c.getTime());
     	lstHD.add(m_historique);
-    	//leDirigent.setLeClubDirigent(monClub);
-    	
     	leDirigent.setLst_histoDirigents(lstHD);
-        leDirigent.setLaPersonne(listePersonneByCIN().get(0));      
+        leDirigent.setLaPersonne(gspersonne.getLstpersonne().get(0));      
         new ServiceDirigent().saveDirigent(leDirigent);
         return "listDirigents";
     }

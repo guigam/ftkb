@@ -27,9 +27,11 @@ import javax.persistence.Transient;
 @Entity
 
 public  class Entraineurs extends Acteurs {
- 
-  
-    private String grade;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private String grade;
     private String degre;
     @OneToMany(cascade=CascadeType.ALL)
 	private List<Historique> lsthistoriqueEntraineur = new LinkedList<Historique>();

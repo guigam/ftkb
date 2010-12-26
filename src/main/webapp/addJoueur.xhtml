@@ -70,30 +70,30 @@
 
 
           <h:outputText value="C.I.N"/>
-          <h:inputText value="#{gestionDesJoueurs.monPersonne.cin}"/>
+          <h:inputText value="#{gestionpersonne.cin}"/>
           </h:panelGrid>
                 <h:commandButton value="valider" action="#{gestionDesJoueurs.saveJoueurs}" />
-                <a4j:commandButton value ="Recherche" action="#{gestionDesJoueurs.listePersonneByCIN}" reRender="tt" style="margin-bottom: 0px" />
+                <a4j:commandButton value ="Recherche" action="#{gestionpersonne.listePersonneByCIN}" reRender="tt" style="margin-bottom: 0px" />
 
           </h:panelGrid>
 
               <a4j:outputPanel id="tt">
 
-                  <a4j:outputPanel id="rien" rendered="${empty gestionDesJoueurs.lesPersonnes}">
+                  <a4j:outputPanel id="rien" rendered="${empty gestionpersonne.lstpersonne}">
                             <h:outputText value="Aucun Resultat" style="font-size:14;font-weight:bold;" />
                             <rich:separator height="5"/>
                   </a4j:outputPanel>
 
 
 
-                  <a4j:outputPanel rendered="${not empty gestionDesJoueurs.lesPersonnes}"  id="tt2">
+                  <a4j:outputPanel rendered="${not empty gestionpersonne.lstpersonne}"  id="tt2">
                       <h:outputText value=" Resultat" style="font-size:14;font-weight:bold;" />
                             <rich:separator height="5"/>
                             <a4j:commandLink  value="Ajouter Specialitées" id="link">
                             	    <rich:componentControl for="panel" attachTo="link" operation="show" event="onclick"/>
                             </a4j:commandLink>
                             <rich:spacer height="5"/>
-                            <rich:dataTable width="100%" value="#{gestionDesJoueurs.lesPersonnes}"   var="tt" >
+                            <rich:dataTable width="100%" value="#{gestionpersonne.lstpersonne}"   var="tt" >
                       <rich:column width="20%">
                           <f:facet name="header">
                               <h:outputText value="Nom et prenom"/>

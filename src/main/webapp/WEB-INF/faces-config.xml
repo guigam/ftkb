@@ -142,7 +142,7 @@
     <managed-bean>
         <managed-bean-name>gestEntrain</managed-bean-name>
         <managed-bean-class>services.GestionDesEntraineurs</managed-bean-class>
-        <managed-bean-scope>session</managed-bean-scope>
+        <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
     <managed-bean>
         <managed-bean-name>gestEntrainAdj</managed-bean-name>
@@ -157,7 +157,7 @@
     <managed-bean>
         <managed-bean-name>redirect</managed-bean-name>
         <managed-bean-class>services.RedirectController</managed-bean-class>
-        <managed-bean-scope>session</managed-bean-scope>
+        <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
     <managed-bean>
         <managed-bean-name>spec</managed-bean-name>

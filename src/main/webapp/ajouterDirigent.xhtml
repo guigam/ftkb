@@ -56,25 +56,25 @@
           
           
           <h:outputText value="C.I.N"/>
-          <h:inputText value="#{gsDirigent.laPersonnes.cin}"/>
+          <h:inputText value="#{gestionpersonne.cin}"/>
           </h:panelGrid>
           <h:commandButton value="valider" action="#{gsDirigent.saveDirigent}" />
-                <a4j:commandButton value ="Reccherche" action="#{gsDirigent.listePersonneByCIN}" reRender="tt" style="margin-bottom: 0px" />
+                <a4j:commandButton value ="Reccherche" action="#{gestionpersonne.listePersonneByCIN}" reRender="tt" style="margin-bottom: 0px" />
           </h:panelGrid>
           
               <a4j:outputPanel id="tt">
 
-                  <a4j:outputPanel id="rien" rendered="${empty gsDirigent.lstPersonnes}">
+                  <a4j:outputPanel id="rien" rendered="${empty gestionpersonne.lstpersonne}">
                             <h:outputText value="Aucun Resultat" style="font-size:14;font-weight:bold;" />
                             <rich:separator height="5"/>
                   </a4j:outputPanel>
 
 
 
-                  <a4j:outputPanel rendered="${not empty gsDirigent.lstPersonnes}"  id="tt2">
+                  <a4j:outputPanel rendered="${not empty gestionpersonne.lstpersonne}"  id="tt2">
                       <h:outputText value=" Resultat" style="font-size:14;font-weight:bold;" />
                             <rich:separator height="5"/>
-                            <rich:dataTable width="100%" value="#{gsDirigent.lstPersonnes}"   var="tt" >
+                            <rich:dataTable width="100%" value="#{gestionpersonne.lstpersonne}"   var="tt" >
                       <rich:column width="20%">
                           <f:facet name="header">
                               <h:outputText value="Nom et prenom"/>

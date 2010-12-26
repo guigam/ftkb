@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -11,7 +12,7 @@ import javax.persistence.Query;
 
 import modeles.Historique;
 import modeles.Joueur;
-
+@ApplicationScoped
 public class ServiceJoueurImpl implements ServiceJoueur {
 	private EntityManagerFactory emf = Persistence.createEntityManagerFactory("gestion");
     private EntityManager em = emf.createEntityManager();

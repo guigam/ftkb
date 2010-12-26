@@ -35,11 +35,11 @@ public class GestionArbitre {
 
 
 
-    public Personnes listePersonneByCIN() {
-        lesPersonnes = new gestionPersonnes().getlistePersonneByCIN(getLaPersonnes().getCin());
-        setLaPersonnes(lesPersonnes.get(0));
-        return getLaPersonnes();
-    }
+//    public Personnes listePersonneByCIN() {
+//        lesPersonnes = new gestionPersonnes().getlistePersonneByCIN(getLaPersonnes().getCin());
+//        setLaPersonnes(lesPersonnes.get(0));
+//        return getLaPersonnes();
+//    }
 
 
     public String saveArbitre() {

@@ -34,11 +34,11 @@ public class GestionDesEntraineursAdjoint {
     }
 
   
-    public Personnes listePersonneAdjByCIN(){
-       lesPersonnes = new gestionPersonnes().getlistePersonneByCIN(getLaPersonnes().getCin());
-       laPersonnes = lesPersonnes.get(0);
-        return laPersonnes;
-    }
+//    public Personnes listePersonneAdjByCIN(){
+//       lesPersonnes = new gestionPersonnes().getlistePersonneByCIN(getLaPersonnes().getCin());
+//       laPersonnes = lesPersonnes.get(0);
+//        return laPersonnes;
+//    }
 
     public String saveEntraineuradjoint(){
         

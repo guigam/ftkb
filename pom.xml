@@ -23,7 +23,18 @@
 		 </url>
 		 <layout>default</layout>
 	    </repository>
-
+		      <repository>
+         <id>jboss-public-repository</id>
+         <name>JBoss Repository</name>
+         <url>https://repository.jboss.org/nexus/content/groups/public</url>
+         <!-- These optional flags are designed to speed up your builds by reducing remote server calls -->
+         <releases>
+            <updatePolicy>never</updatePolicy>
+         </releases>
+         <snapshots>
+            <updatePolicy>daily</updatePolicy>
+         </snapshots>
+      </repository>
         <repository>
             <id>java.net2</id>
             <name>Repository hosting the jee6 artifacts</name>
@@ -37,7 +48,50 @@
         </repository>
 
     </repositories>
+       <pluginRepositories>
+      <pluginRepository>
+         <id>jboss-public-repository</id>
+         <name>JBoss Repository</name>
+         <url>https://repository.jboss.org/nexus/content/groups/public</url>
+         <!-- These optional flags are designed to speed up your builds by reducing remote server calls -->
+         <releases>
+            <updatePolicy>never</updatePolicy>
+         </releases>
+         <snapshots>
+            <!-- Set to true to fix error in which Maven cannot find org.apache.maven.plugins:maven-archetype-plugin:maven-plugin:2.0-alpha-6-SNAPSHOT -->
+            <updatePolicy>daily</updatePolicy>
+         </snapshots>
+      </pluginRepository>
+   </pluginRepositories>
     <dependencies>
+          <!-- Weld Extensions provides convenient, portable CDI extensions such as an injectable logger -->
+      <dependency>
+         <groupId>org.jboss.weld</groupId>
+         <artifactId>weld-extensions</artifactId>
+         <version>1.0.0.Alpha2</version>
+      </dependency>
+		<dependency>
+			<groupId>org.jboss.weld.servlet</groupId>
+			<artifactId>weld-servlet</artifactId>
+			<version>1.0.1-Final</version>
+			<scope>runtime</scope>
+		</dependency>
+      <!-- Need to use the injectable logger in Weld Extensions -->
+      <!-- Switch scope to provided if server provides slf4j; JBoss AS provides it; GlassFish provides it if the Hibernate JPA provider is installed -->
+      <dependency>
+         <groupId>org.slf4j</groupId>
+         <artifactId>slf4j-api</artifactId>
+         <version>1.5.10</version>
+         <scope>compile</scope>
+      </dependency>
+
+      <!-- Remove if server provides slf4j; JBoss AS provides it; GlassFish provides it if the Hibernate JPA provider is installed -->
+      <dependency>
+         <groupId>org.slf4j</groupId>
+         <artifactId>slf4j-jdk14</artifactId>
+         <version>1.5.10</version>
+         <scope>runtime</scope>
+      </dependency>
         <dependency>
                 <groupId>org.richfaces.framework</groupId>
                 <artifactId>richfaces-impl</artifactId>

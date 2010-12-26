@@ -10,6 +10,11 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.enterprise.context.RequestScoped;
+import javax.faces.context.FacesContext;
+import javax.inject.Inject;
+import javax.inject.Named;
+
 import modeles.Historique;
 import modeles.Joueur;
 import modeles.Personnes;
@@ -22,6 +27,7 @@ import services.ServiceJoueur.*;
  *
  * @author guigam
  */
+
 public class GestionDesJoueurs {
     private Joueur lejoueur = new Joueur();
     private Personnes monPersonne = new Personnes();
@@ -30,8 +36,7 @@ public class GestionDesJoueurs {
     private List<specialite> mesSpecial = new LinkedList<specialite>();
     private Historique m_historique = new Historique();
    
-
-
+    gestionPersonnes gspersonne = (gestionPersonnes) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("gestionpersonne");
 
 	/** Creates a new instance of GestionDesJoueurs */
     public GestionDesJoueurs() {
@@ -42,11 +47,11 @@ public class GestionDesJoueurs {
     }
     
 
-    public List<Personnes> listePersonneByCIN() {
-       lesPersonnes = new gestionPersonnes().getlistePersonneByCIN(getMonPersonne().getCin());
-       monPersonne = lesPersonnes.get(0);
-       return lesPersonnes;
-    }
+//    public List<Personnes> listePersonneByCIN() {
+//       lesPersonnes =new gestionPersonnes().getlistePersonneByCIN(getMonPersonne().getCin());
+//       monPersonne = lesPersonnes.get(0);
+//       return lesPersonnes;
+//    }
 
     public Joueur rechercheJoueurParLicence(String licence) {
     	Historique hj = new gestionHistorique().rechercheLicenceCourante(licence);
@@ -77,7 +82,7 @@ public class GestionDesJoueurs {
         List<Historique> lstHD = new LinkedList<Historique>();
     	lstHD.add(m_historique);
     	lejoueur.setLsthistoriqueJoueur(lstHD);       
-        lejoueur.setLaPersonne(monPersonne);         
+        lejoueur.setLaPersonne(gspersonne.getLstpersonne().get(0));         
         new ServiceJoueurImpl().saveJoueur(lejoueur);
         return "listJoueurs";
     }

@@ -6,6 +6,7 @@
 package modeles;
 
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -30,7 +31,7 @@ public  class Dirigents extends Acteurs {
     private Clubs leClubDirigent;
     private boolean etat;
     @OneToMany(cascade=CascadeType.ALL)
-    private List<Historique> lst_histoDirigents;
+    private List<Historique> lst_histoDirigents = new LinkedList<Historique>();
 
 
 	@Transient
