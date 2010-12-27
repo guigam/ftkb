@@ -14,8 +14,7 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 import modeles.Clubs;
-@Named
-@ApplicationScoped
+
 public class serviceClubImpl implements serviceClub {
 	 
 	     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("gestion");

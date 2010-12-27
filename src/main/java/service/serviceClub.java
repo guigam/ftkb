@@ -7,8 +7,7 @@ import javax.faces.model.SelectItem;
 import javax.inject.Named;
 
 import modeles.Clubs;
-@Named
-@ApplicationScoped
+
 public interface serviceClub {
 	
 	

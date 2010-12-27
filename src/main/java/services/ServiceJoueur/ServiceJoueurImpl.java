@@ -12,7 +12,7 @@ import javax.persistence.Query;
 
 import modeles.Historique;
 import modeles.Joueur;
-@ApplicationScoped
+
 public class ServiceJoueurImpl implements ServiceJoueur {
 	private EntityManagerFactory emf = Persistence.createEntityManagerFactory("gestion");
     private EntityManager em = emf.createEntityManager();
